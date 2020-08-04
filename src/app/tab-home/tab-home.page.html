@@ -1,17 +1,29 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Home
     </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar animated showCancelButton="focus"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<ion-content>
+  <ion-list *ngFor="let patient of patients">
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-img [src]="imgUrl"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h2>
+          {{ patient.name }}&nbsp;<ion-icon
+            [name]="patient.gender+'-outline'"
+            [class]="patient.gender + 'Color'"
+          ></ion-icon>
+        </h2>
+        <p>Date of Birth: {{ patient.birthDate }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
