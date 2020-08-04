@@ -1,0 +1,7 @@
+{
+  "name": "gosh-diagnotify",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
