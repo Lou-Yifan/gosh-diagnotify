@@ -6,6 +6,18 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
+  },
+  {
+    path: 'Patient/:patientId',
+    loadChildren: () => import('./subpages/detailed-patient/detailed-patient.module').then( m => m.DetailedPatientPageModule)
+  },
+  {
+    path: 'Patient/Appointments/:patientId',
+    loadChildren: () => import('./subpages/appointment/appointment.module').then( m => m.AppointmentPageModule)
+  },
+  {
+    path: 'Patient/Observations/:patientId',
+    loadChildren: () => import('./subpages/observation/observation.module').then( m => m.ObservationPageModule)
   }
 ];
 

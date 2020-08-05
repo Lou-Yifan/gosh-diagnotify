@@ -13,13 +13,22 @@ export class HomePage {
   constructor(public patientService: PatientService) {}
 
   ngOnInit(){
-    this.InitializeData();
+    this.patientService.getPatients().then(data => {
+      this.InitializeData();
+    })
   }
 
   InitializeData(){
-    this.patientService.getPatients().then(data =>{
-      this.patients = data;
-      //console.log(data);
-    })
+    this.patients = this.patientService.patients;
+  }
+
+  searchPatient(ev:any){
+    this.InitializeData();
+    const val = ev.target.value;
+    if (val && val.trim() != "") {
+      this.patients = this.patients.filter((patient) => {
+        return (patient.name.toLowerCase().indexOf(val.toLowerCase())>-1);
+      })
+    }
   }
  }

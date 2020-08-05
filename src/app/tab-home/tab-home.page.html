@@ -5,12 +5,19 @@
     </ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar animated showCancelButton="focus"></ion-searchbar>
+    <ion-searchbar
+      animated
+      showCancelButton="focus"
+      (ionInput)="searchPatient($event)"
+    ></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list *ngFor="let patient of patients">
+  <ion-list
+    *ngFor="let patient of patients"
+    [routerLink]="['/tabs/home/Patient', patient.id]"
+  >
     <ion-item>
       <ion-avatar slot="start">
         <ion-img [src]="imgUrl"></ion-img>
