@@ -28,6 +28,7 @@
             [name]="patient.gender+'-outline'"
             [class]="patient.gender + 'Color'"
           ></ion-icon>
+          <ion-icon name="bookmark" style="float: right;" [color]="checkIfFollowed(patient)"></ion-icon>
         </h2>
         <p>Date of Birth: {{ patient.birthDate }}</p>
       </ion-label>

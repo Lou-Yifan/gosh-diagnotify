@@ -19,26 +19,30 @@ export class WatchListPage {
   ) {}
 
   ngOnInit() {
+
+  }
+
+  ionViewDidEnter(){
     this.patientService.getPatients().then(data =>{
       this.InitializeData();
     })
   }
 
   InitializeData() {
-    this.watchListService.getWatchPatients(this.userId).subscribe(
-      (res) => {
-        console.log(res);
-        const patientList: any = res;
-        for (let patient of patientList) {
-          //console.log(patient.patientId);
-          const loadedPatient = this.patientService.getPatientById(patient.patientId);
-          this.watchPatients.push(loadedPatient);
-          //console.log(this.watchPatients);
-        }
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    this.watchListService.getWatchPatients().then(data => {
+      this.watchPatients = this.watchListService.watchPatients;
+    })
+  }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      this.patientService.getPatients().then(data =>{
+        this.InitializeData();
+      });
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 5000);
   }
 }

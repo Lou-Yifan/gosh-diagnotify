@@ -11,7 +11,13 @@
   <ion-item-group>
     <ion-item lines="none" class="ion-no-margin">
       <ion-label style="text-align: right;">
-        <h4>Follow&nbsp;<ion-toggle style="zoom:0.6;" [(ngModel)]="follow" (ionChange)="changeFollowStatus()"></ion-toggle></h4>
+        <h4>
+          Follow&nbsp;<ion-toggle
+            style="zoom: 0.6;"
+            [(ngModel)]="follow"
+            (ionChange)="changeFollowStatus()"
+          ></ion-toggle>
+        </h4>
       </ion-label>
     </ion-item>
     <ion-item lines="none" class="ion-margin">
@@ -36,16 +42,25 @@
         Activities
       </ion-label>
     </ion-item-divider>
-    <ion-item button [routerLink]="['/tabs/home/Patient/Observations', loadedPatient.id]">
+    <ion-item
+      button
+      [routerLink]="['/tabs/home/Patient/Observations', loadedPatient.id]"
+    >
       <ion-icon slot="start" name="eye"></ion-icon>
       <ion-label>Observations</ion-label>
       <ion-icon slot="end" name="forward-arrow"></ion-icon>
     </ion-item>
-    <ion-item button [routerLink]="['/tabs/home/Patient/lab-report', loadedPatient.id]">
+    <ion-item
+      button
+      [routerLink]="['/tabs/home/Patient/lab-report', loadedPatient.id]"
+    >
       <ion-icon slot="start" name="pulse"></ion-icon>
       <ion-label>Lab Report</ion-label>
     </ion-item>
-    <ion-item button [routerLink]="['/tabs/home/Patient/Appointments', loadedPatient.id]">
+    <ion-item
+      button
+      [routerLink]="['/tabs/home/Patient/Appointments', loadedPatient.id]"
+    >
       <ion-icon slot="start" name="calendar"></ion-icon>
       <ion-label>Appointment</ion-label>
     </ion-item>
@@ -86,27 +101,19 @@
     </ion-item>
     <ion-item>
       <ion-label>City</ion-label>
-      <ion-text color="primary"
-        >{{ loadedPatient.city }}</ion-text
-      >
+      <ion-text color="primary">{{ loadedPatient.city }}</ion-text>
     </ion-item>
     <ion-item>
       <ion-label>State</ion-label>
-      <ion-text color="primary"
-        >{{ loadedPatient.state }}</ion-text
-      >
+      <ion-text color="primary">{{ loadedPatient.state }}</ion-text>
     </ion-item>
     <ion-item>
       <ion-label>Postcode</ion-label>
-      <ion-text color="primary"
-        >{{ loadedPatient.postcode }}</ion-text
-      >
+      <ion-text color="primary">{{ loadedPatient.postcode }}</ion-text>
     </ion-item>
     <ion-item>
       <ion-label>Country</ion-label>
-      <ion-text color="primary"
-        >{{ loadedPatient.country }}</ion-text
-      >
+      <ion-text color="primary">{{ loadedPatient.country }}</ion-text>
     </ion-item>
     <ion-item lines="none"></ion-item>
   </ion-item-group>
