@@ -1,0 +1,22 @@
+<ion-card [ngSwitch]="segment_chart">
+  <div *ngSwitchCase="'chart_week'">1</div>
+  <div *ngSwitchCase="'chart_month'">2</div>
+  <div *ngSwitchCase="'chart_year'">3</div>
+  <div *ngSwitchCase="'chart_all'">4</div>
+
+  <ion-segment [(ngModel)]="segment_chart" (ionChange)="segmentChanged_chart($event)">
+    <ion-segment-button value="chart_week">
+      <ion-label>Week</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="chart_month">
+      <ion-label>Month</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="chart_year">
+      <ion-label>Year</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="chart_all">
+      <ion-label>All</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+</ion-card>

@@ -8,12 +8,18 @@ import { ObservationPageRoutingModule } from './observation-routing.module';
 
 import { ObservationPage } from './observation.page';
 
+// Modules
+import { ChartsModule } from './charts/charts.module';
+import { ObservationListModule } from './observation-list/observation-list.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ObservationPageRoutingModule
+    ObservationPageRoutingModule,
+    ChartsModule,
+    ObservationListModule
   ],
   declarations: [ObservationPage]
 })

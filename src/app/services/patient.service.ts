@@ -9,6 +9,10 @@ export class PatientService {
   apiUrl: string = "https://donet-azure-fhir-web-api20200804100046.azurewebsites.net";
   myApiUrl: string = "https://localhost:5004";
 
+  // Observation Page
+  observations: any; // store {patientId: observations}
+  observedItems: any = []; // store {patientId: observationItems}
+
   constructor(public http: HttpClient) {}
 
   // ***************************
@@ -53,18 +57,40 @@ export class PatientService {
     return this.http.get(this.myApiUrl+"/api/Appointment/Patient/"+patientId);
   }
 
-  // **************************
+  // *****************************************************************************************
   // Observation Related
-  // **************************
+  // *****************************************************************************************
 
-  // Get all the observations of a patient by Id
+  // Get observations and observedItems
   getObservationsById(patientId: string){
-    return this.http.get(this.myApiUrl+"/api/Observation/Patient/"+patientId);
+
+    // Get all the observations of a patient by Id
+    return this.http.get(this.myApiUrl+"/api/Observation/Patient/"+patientId).subscribe(data => {
+      this.observations = data;
+      //console.log(data);
+    
+      // Get all the observed items accordingly
+      this.observedItems = [];
+      const allObserves: any = data;
+      for (let observation of allObserves) {
+        this.http.get(this.myApiUrl+"/api/ObservedItem/Item/"+observation.observedItemId).subscribe(data => {
+          const observedLists: any = data;
+          for (let singleObserve of observedLists) {
+            this.observedItems.push(singleObserve);
+          }
+        })
+      }
+    });
   }
 
-  // Get the details of observation by observationId
-  getObservedItemsByObservedId(observedItemId: string){
-    return this.http.get(this.myApiUrl+"/api/ObservedItem/Item/"+observedItemId);
+  // Get local observation data
+  getLocalObservations(patientId: string){
+    return this.observations;
   }
+
+  getLocalObservedItems(patientId: string){
+    return this.observedItems;
+  }
+
 
 }

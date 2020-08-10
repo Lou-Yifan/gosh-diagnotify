@@ -4,31 +4,28 @@
       <ion-back-button slot="start"></ion-back-button>
     </ion-buttons>
     <ion-title>Observations</ion-title>
+    <ion-segment slot="end" (ionChange)="segmentChanged()" [(ngModel)] = "segment">
+      <ion-segment-button value="0" style="width: 50px; min-width:50px;">
+        <ion-icon name="calendar"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="1" style="width: 50px; min-width:50px;">
+        <ion-icon name="bar-chart"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let observation of observations">
-    <ion-card-header>
-      <ion-label>
-        <ion-icon name="time-outline"></ion-icon>
-        <h2 style="display: inline-block; color: black;">&nbsp;{{ observation.date }}</h2>
-        <h3 style="display: inline-block; color: black;">&nbsp;{{ observation.time }}</h3>
-      </ion-label>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-grid>
-        <ng-container  *ngFor="let observedItem of observedItems">
-          <ion-row  *ngIf="observedItem.observedItemId === observation.observedItemId">
-            <ion-col size="6">
-              <h5>{{ observedItem.itemName }}</h5>
-            </ion-col>
-            <ion-col size="6">
-              <h5>{{ observedItem.value }}&nbsp;{{ observedItem.unit }}</h5>
-            </ion-col>
-          </ion-row>
-      </ng-container>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
+  <ion-slides #slides (ionSlideDidChange)="slideChanged()">
+    <ion-slide>
+      <app-observation-list
+      [observations]="observations"
+      [observedItems]="observedItems"
+    ></app-observation-list>
+    </ion-slide>
+
+    <ion-slide>
+      <app-charts></app-charts>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

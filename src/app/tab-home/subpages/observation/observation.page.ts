@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, ViewChild } from "@angular/core";
 import { PatientService } from "../../../services/patient.service";
 import { ActivatedRoute } from "@angular/router";
-import { NavController } from "@ionic/angular";
+import { NavController, IonSlides } from "@ionic/angular";
 
 @Component({
   selector: "app-observation",
@@ -9,8 +9,11 @@ import { NavController } from "@ionic/angular";
   styleUrls: ["./observation.page.scss"],
 })
 export class ObservationPage implements OnInit {
+  @ViewChild("slides", {static: true}) slider: IonSlides;
   observations: any;
-  observedItems: any[] = [];
+  observedItems: any;
+  loadedPatientId: string;
+  segment = 0;
 
   constructor(
     public patientService: PatientService,
@@ -22,39 +25,41 @@ export class ObservationPage implements OnInit {
     this.InitializeData();
   }
 
-  InitializeData(){
-    this.activatedRoute.paramMap.subscribe(paramMap => {
+  ionViewDidEnter() {
+    this.obtainObservations();
+  }
+
+  InitializeData() {
+    this.activatedRoute.paramMap.subscribe((paramMap) => {
       if (!paramMap.has("patientId")) {
         this.navCtrl.back();
         return;
       }
-      const loadedPatientId = paramMap.get("patientId");
-      console.log(loadedPatientId);
-      this.patientService.getObservationsById(loadedPatientId).subscribe(
-        res => {
-          //console.log(res);
-          this.observations = res;
+      this.loadedPatientId = paramMap.get("patientId");
 
-          for (let observation of this.observations) {
-            this.getObservedItems(observation.observedItemId);
-          }
-        }
-      )
-    })
+      // Get observation data from API and store them in the local service
+      this.patientService.getObservationsById(this.loadedPatientId);
+      //console.log(this.loadedPatientId);
+    });
   }
 
-  getObservedItems(observedItemId: string){
-    this.patientService.getObservedItemsByObservedId(observedItemId).subscribe(
-      res => {
-        //console.log(res);
-        const observations: any = res;
-        for (let observation of observations) {
-          this.observedItems.push(observation);
-        }
-        //console.log(this.observedItems);
-      }, err => {
-        console.log(err);
-      }
-    )
+  // Get observation data from local service
+  obtainObservations() {
+    this.observations = this.patientService.getLocalObservations(
+      this.loadedPatientId
+    );
+    //console.log(this.observations);
+    this.observedItems = this.patientService.getLocalObservedItems(
+      this.loadedPatientId
+    );
+    //console.log(this.observedItems);
+  }
+
+  async segmentChanged() {
+    await this.slider.slideTo(this.segment);
+  }
+
+  async slideChanged(){
+    this.segment = await this.slider.getActiveIndex();
   }
 }
