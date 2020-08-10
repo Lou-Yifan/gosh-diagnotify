@@ -15,17 +15,18 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-slides #slides (ionSlideDidChange)="slideChanged()">
+<ion-content class="ion-no-padding" class="ion-no-margin">
+  <ion-slides #slides (ionSlideDidChange)="slideChanged()" class="ion-no-padding" class="ion-no-margin">
     <ion-slide>
       <app-observation-list
       [observations]="observations"
       [observedItems]="observedItems"
+      style="width: 100%;"
     ></app-observation-list>
     </ion-slide>
 
     <ion-slide>
-      <app-charts></app-charts>
+      <app-charts style="width: 100%;"></app-charts>
     </ion-slide>
   </ion-slides>
 </ion-content>

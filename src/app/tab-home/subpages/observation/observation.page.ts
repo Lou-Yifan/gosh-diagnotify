@@ -48,11 +48,11 @@ export class ObservationPage implements OnInit {
     this.observations = this.patientService.getLocalObservations(
       this.loadedPatientId
     );
-    //console.log(this.observations);
+    console.log(this.observations);
     this.observedItems = this.patientService.getLocalObservedItems(
       this.loadedPatientId
     );
-    //console.log(this.observedItems);
+    console.log(this.observedItems);
   }
 
   async segmentChanged() {
