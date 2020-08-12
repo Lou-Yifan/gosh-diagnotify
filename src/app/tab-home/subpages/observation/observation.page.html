@@ -4,11 +4,15 @@
       <ion-back-button slot="start"></ion-back-button>
     </ion-buttons>
     <ion-title>Observations</ion-title>
-    <ion-segment slot="end" (ionChange)="segmentChanged()" [(ngModel)] = "segment">
-      <ion-segment-button value="0" style="width: 50px; min-width:50px;">
+    <ion-segment
+      slot="end"
+      (ionChange)="segmentChanged()"
+      [(ngModel)]="segment"
+    >
+      <ion-segment-button value="0" style="width: 50px; min-width: 50px;">
         <ion-icon name="calendar"></ion-icon>
       </ion-segment-button>
-      <ion-segment-button value="1" style="width: 50px; min-width:50px;">
+      <ion-segment-button value="1" style="width: 50px; min-width: 50px;">
         <ion-icon name="bar-chart"></ion-icon>
       </ion-segment-button>
     </ion-segment>
@@ -16,17 +20,30 @@
 </ion-header>
 
 <ion-content class="ion-no-padding" class="ion-no-margin">
-  <ion-slides #slides (ionSlideDidChange)="slideChanged()" class="ion-no-padding" class="ion-no-margin">
+  <ion-slides
+    #slides
+    (ionSlideDidChange)="slideChanged()"
+    class="ion-no-padding"
+    class="ion-no-margin"
+  >
     <ion-slide>
       <app-observation-list
-      [observations]="observations"
-      [observedItems]="observedItems"
-      style="width: 100%;"
-    ></app-observation-list>
+        [observations]="observations"
+        [observedItems]="observedItems"
+        style="width: 100%;"
+      ></app-observation-list>
     </ion-slide>
 
     <ion-slide>
-      <app-charts style="width: 100%;"></app-charts>
+      <ion-list style="width: 100%;">
+        <ion-item  *ngFor="let item of chartData | keyvalue" lines="none">
+          <app-charts
+          [label]="item.key"
+          [labelData]="item.value"
+          style="width: 100%;"
+        ></app-charts>
+        </ion-item>
+      </ion-list>
     </ion-slide>
   </ion-slides>
 </ion-content>

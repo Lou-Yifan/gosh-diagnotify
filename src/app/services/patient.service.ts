@@ -66,7 +66,16 @@ export class PatientService {
 
     // Get all the observations of a patient by Id
     return this.http.get(this.myApiUrl+"/api/Observation/Patient/"+patientId).subscribe(data => {
-      this.observations = data;
+      const mydata: any = data;
+      // sort the observations to make the latest one first
+      this.observations = mydata.sort((a, b) => {
+        if (a.date < b.date) return 1;
+        if (a.date > b.date) return -1;
+        if (a.date = b.date) {
+          if (a.time < b.time) return 1;
+          if (a.time > b.time) return -1;
+        }
+      });
       //console.log(data);
     
       // Get all the observed items accordingly

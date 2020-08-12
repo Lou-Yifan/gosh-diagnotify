@@ -14,6 +14,7 @@ export class ObservationPage implements OnInit {
   observedItems: any;
   loadedPatientId: string;
   segment = 0;
+  chartData = {};
 
   constructor(
     public patientService: PatientService,
@@ -27,6 +28,7 @@ export class ObservationPage implements OnInit {
 
   ionViewDidEnter() {
     this.obtainObservations();
+    this.obtainChartData();
   }
 
   InitializeData() {
@@ -48,11 +50,32 @@ export class ObservationPage implements OnInit {
     this.observations = this.patientService.getLocalObservations(
       this.loadedPatientId
     );
-    console.log(this.observations);
+    //console.log(this.observations);
     this.observedItems = this.patientService.getLocalObservedItems(
       this.loadedPatientId
     );
-    console.log(this.observedItems);
+    //console.log(this.observedItems);
+  }
+
+  // Get chart data
+  // {label: [{datetime: object}, {datetime: object}]}
+  obtainChartData(){
+    let label: any;
+    let orderedObsevedItems = this.patientService.observedItems.reverse();
+    for (let observedItem of orderedObsevedItems) {
+      const observation = this.patientService.observations.find(ob => {
+        return ob.observedItemId === observedItem.observedItemId;
+      });
+      label = observedItem.itemName;
+      const labelDatetime = observation.date + " " + observation.time;
+      if (!this.chartData[label]){
+        this.chartData[label] = [];
+      }
+      let ob = {};
+      ob[labelDatetime] = observedItem
+      this.chartData[label].push(ob);
+    }
+    //console.log(this.chartData);
   }
 
   async segmentChanged() {
