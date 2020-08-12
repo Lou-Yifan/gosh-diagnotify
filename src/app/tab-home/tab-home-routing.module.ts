@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'Patient/Observations/:patientId',
     loadChildren: () => import('./subpages/observation/observation.module').then( m => m.ObservationPageModule)
+  },
+  {
+    path: 'Patient/Reports/:patientId',
+    loadChildren: () => import('./subpages/report/report.module').then( m => m.ReportPageModule)
   }
 ];
 
