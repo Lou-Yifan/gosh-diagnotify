@@ -8,14 +8,14 @@ import { PatientService } from "../services/patient.service";
 export class WatchListService {
   watchPatients: any = [];
   myApiUrl: string = "https://localhost:5004";
-  userId: string = "U123456";
+  clinicianId: string = "C0001";
 
   constructor(public http: HttpClient, public patientService: PatientService) {}
 
   // Get all the patients in the watchList
   getWatchPatients() {
     return new Promise((resolve, reject) => {
-      this.http.get(this.myApiUrl + "/api/WatchList/User/" + this.userId).subscribe(
+      this.http.get(this.myApiUrl + "/api/WatchList/Clinician/" + this.clinicianId).subscribe(
         res => {
         //console.log(res);
         const patientList: any = res;
@@ -45,7 +45,7 @@ export class WatchListService {
   // Post a patient to watchList
   postPatientToWatchList(patientId: string) {
     const savedPatient = {
-      UserId: this.userId,
+      ClinicianId: this.clinicianId,
       PatientId: patientId,
     };
     return this.http.post(this.myApiUrl + "/api/WatchList", savedPatient, {
@@ -56,7 +56,7 @@ export class WatchListService {
   // Delete a patient in watchList
   deletePatientInWatchList(patientId: string) {
     return this.http.delete(
-      this.myApiUrl + "/api/WatchList/Patient/" + this.userId + "/" + patientId
+      this.myApiUrl + "/api/WatchList/Patient/" + this.clinicianId + "/" + patientId
     );
   }
 }

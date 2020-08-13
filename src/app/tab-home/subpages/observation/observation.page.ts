@@ -9,12 +9,13 @@ import { NavController, IonSlides } from "@ionic/angular";
   styleUrls: ["./observation.page.scss"],
 })
 export class ObservationPage implements OnInit {
-  @ViewChild("slides", {static: true}) slider: IonSlides;
+  @ViewChild("slides", { static: true }) slider: IonSlides;
   observations: any;
   observedItems: any;
   loadedPatientId: string;
   segment = 0;
-  chartData = {};
+  chartData: any;
+  label: any;
 
   constructor(
     public patientService: PatientService,
@@ -51,30 +52,28 @@ export class ObservationPage implements OnInit {
       this.loadedPatientId
     );
     //console.log(this.observations);
-    this.observedItems = this.patientService.getLocalObservedItems(
-      this.loadedPatientId
-    );
-    //console.log(this.observedItems);
   }
 
   // Get chart data
   // {label: [{datetime: object}, {datetime: object}]}
-  obtainChartData(){
-    let label: any;
-    let orderedObsevedItems = this.patientService.observedItems.reverse();
-    for (let observedItem of orderedObsevedItems) {
-      const observation = this.patientService.observations.find(ob => {
-        return ob.observedItemId === observedItem.observedItemId;
-      });
-      label = observedItem.itemName;
-      const labelDatetime = observation.date + " " + observation.time;
-      if (!this.chartData[label]){
-        this.chartData[label] = [];
-      }
-      let ob = {};
-      ob[labelDatetime] = observedItem
-      this.chartData[label].push(ob);
+  obtainChartData() {
+    let labels: any = [];
+    let bp: any = [];
+    let bh: any = [];
+    let rr: any = [];
+    let sr: any = [];
+    let reversedObservations = this.patientService.observations.reverse();
+    for (let observation of reversedObservations) {
+      labels.push(observation.date + " " + observation.time);
+      bp.push(observation.observedItems[0].bloodPressures[0]);
+      bh.push(observation.observedItems[0].bodyHeats[0]);
+      rr.push(observation.observedItems[0].respiratoryRates[0]);
+      sr.push(observation.observedItems[0].sinusRhythms[0]);
     }
+    //console.log(bp);
+    this.label = labels;
+    this.chartData = [bp, bh, rr, sr];
+
     //console.log(this.chartData);
   }
 
@@ -82,7 +81,7 @@ export class ObservationPage implements OnInit {
     await this.slider.slideTo(this.segment);
   }
 
-  async slideChanged(){
+  async slideChanged() {
     this.segment = await this.slider.getActiveIndex();
   }
 }

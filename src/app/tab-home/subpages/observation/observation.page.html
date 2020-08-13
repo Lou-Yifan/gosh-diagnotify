@@ -29,17 +29,16 @@
     <ion-slide>
       <app-observation-list
         [observations]="observations"
-        [observedItems]="observedItems"
         style="width: 100%;"
       ></app-observation-list>
     </ion-slide>
 
     <ion-slide>
       <ion-list style="width: 100%;">
-        <ion-item  *ngFor="let item of chartData | keyvalue" lines="none">
+        <ion-item *ngFor="let data of chartData" lines="none">
           <app-charts
-          [label]="item.key"
-          [labelData]="item.value"
+          [labels]="label"
+          [labelData]="data"
           style="width: 100%;"
         ></app-charts>
         </ion-item>

@@ -8,7 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ObservationListComponent implements OnInit {
 
   @Input() observations: any;
-  @Input() observedItems: any[] = [];
 
   constructor() { }
 

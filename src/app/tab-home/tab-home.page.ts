@@ -54,4 +54,16 @@ export class HomePage {
       });
     }
   }
+
+  obtainImgUrl(patientId: string){
+    return this.patientService.getImgById(patientId).subscribe(
+      data => {
+        const imgUrl = data;
+        return imgUrl["imgUrl"];
+      }, err => {
+        console.log(err);
+        return this.imgUrl;
+      }
+    );
+  }
 }

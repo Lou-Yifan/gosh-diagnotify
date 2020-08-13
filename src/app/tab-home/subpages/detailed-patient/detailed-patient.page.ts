@@ -48,7 +48,7 @@ export class DetailedPatientPage implements OnInit {
           if (res['imgUrl']){
             this.loadedImgUrl = res['imgUrl'];
           } else {
-            this.loadedImgUrl = '';
+            this.loadedImgUrl = ''; // Default avatar
           }
         }, err => {
           console.log(err);

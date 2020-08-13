@@ -76,19 +76,8 @@ export class PatientService {
           if (a.time > b.time) return -1;
         }
       });
-      //console.log(data);
-    
-      // Get all the observed items accordingly
-      this.observedItems = [];
-      const allObserves: any = data;
-      for (let observation of allObserves) {
-        this.http.get(this.myApiUrl+"/api/ObservedItem/Item/"+observation.observedItemId).subscribe(data => {
-          const observedLists: any = data;
-          for (let singleObserve of observedLists) {
-            this.observedItems.push(singleObserve);
-          }
-        })
-      }
+      //console.log(mydata);
+
     });
   }
 
