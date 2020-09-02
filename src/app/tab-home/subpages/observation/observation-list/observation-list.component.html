@@ -1,13 +1,13 @@
 <ion-card *ngFor="let observation of observations">
   <ion-card-header>
-    <ion-label>
-      <ion-icon name="time-outline"></ion-icon>
-      <h2 style="display: inline-block; color: black;">
+    <ion-label color="dark">
+      <ion-icon name="podium" color="secondary"></ion-icon>
+      <h2 style="display: inline-block;">
         &nbsp;{{ observation.date }}
       </h2>
-      <h3 style="display: inline-block; color: black;">
-        &nbsp;{{ observation.time }}
-      </h3>
+      <h2 style="display: inline-block;">
+        &nbsp;{{ observation.time.slice(0, 5) }}
+      </h2>
     </ion-label>
   </ion-card-header>
   <ion-card-content>
@@ -74,3 +74,6 @@
     </ion-grid>
   </ion-card-content>
 </ion-card>
+<ion-item>
+  <ion-label>No Observation Record</ion-label>
+</ion-item>

@@ -1,6 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, ɵConsole } from "@angular/core";
 import { PatientService } from "../services/patient.service";
 import { WatchListService } from "../services/watch-list.service";
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: "app-tab1",
@@ -8,33 +9,47 @@ import { WatchListService } from "../services/watch-list.service";
   styleUrls: ["tab-home.page.scss"],
 })
 export class HomePage {
-  patients;
-  imgUrl: string = "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2429260349,2150036447&fm=26&gp=0.jpg";
+
+  // api related
+  token: any;
+
+  // patient related
+  patients: any;
+
+  // watchList related
   watchPatients: any;
 
   constructor(
     public patientService: PatientService,
-    public watchListService: WatchListService
-  ) {}
-
-  ngOnInit() {
-
+    public watchListService: WatchListService,
+    public authService: AuthService
+  ) {
   }
 
-  ionViewDidEnter(){
-    this.patientService.getPatients().then((data) => {
-      this.InitializeData();
-    });
+  ngOnInit() {
+    this.InitializeData();
+  }
+
+  ionViewDidEnter() {
+    this.updateCheck();
   }
 
   InitializeData() {
-    this.watchListService.getWatchPatients().then(data => {
+    // Get all the data from API
+    let p = this.patientService.getPatients();
+    let w = this.watchListService.getWatchPatients();
+    let i = this.patientService.getAvatars();
+
+    Promise.all([p, w]).then(data => {
       this.patients = this.patientService.patients;
+      //console.log("patients: ", this.patients);
+      this.watchListService.getWatchPatientsInfo();
       this.watchPatients = this.watchListService.watchPatients;
-      //console.log(this.watchPatients);
-    })
+      //console.log("watchPatients: ", this.watchPatients);
+    });
   }
 
+  // If the patient is followed, the mark should be lighted
   checkIfFollowed(patient:any){
     //console.log(patient.id);
     for (let watchPatient of this.watchPatients){
@@ -45,6 +60,7 @@ export class HomePage {
     return "light";
   }
 
+  // Search function
   searchPatient(ev: any) {
     this.patients = this.patientService.patients;
     const val = ev.target.value;
@@ -55,15 +71,18 @@ export class HomePage {
     }
   }
 
-  obtainImgUrl(patientId: string){
-    return this.patientService.getImgById(patientId).subscribe(
-      data => {
-        const imgUrl = data;
-        return imgUrl["imgUrl"];
-      }, err => {
-        console.log(err);
-        return this.imgUrl;
-      }
-    );
+  // Get the avatar of every patient
+  obtainAvatar(patientId: string) {
+    return this.patientService.getAvatarById(patientId);
   }
+
+  // check if watchPatients has updated
+  updateCheck() {
+    if (this.watchListService.status_home) {
+      this.watchPatients = this.watchListService.watchPatients;
+      this.watchListService.status_home = false;
+      console.log("status_home: ", this.watchListService.status_home);
+    }
+  }
+
 }

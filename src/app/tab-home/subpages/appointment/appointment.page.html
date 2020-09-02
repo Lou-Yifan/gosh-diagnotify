@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons>
       <ion-back-button slot="start"></ion-back-button>
     </ion-buttons>
@@ -7,13 +7,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="light">
   <ion-card *ngFor="let appointment of appointments">
     <ion-card-header>
-      <ion-label>
-        <ion-icon name="today-outline"></ion-icon>
-        <h2 style="display: inline-block; color: black;">&nbsp;{{ appointment.date }}</h2>
-        <h2 style="display: inline-block; color: black;">&nbsp;{{ appointment.time }}</h2>
+      <ion-label color="dark">
+        <ion-icon name="today-outline" color="success"></ion-icon>
+        <h2 style="display: inline-block;">&nbsp;{{ appointment.date }}</h2>
+        <h2 style="display: inline-block;">&nbsp;{{ appointment.time.slice(0, 5) }}</h2>
         <h3>Event:  {{ appointment.event }}</h3>
       </ion-label>
     </ion-card-header>

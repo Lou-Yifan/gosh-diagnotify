@@ -1,12 +1,15 @@
 <ion-card>
   <ion-card-content>
-    <canvas #barChart_week [hidden]="segment_chart != 'chart_week'"></canvas>
+    <div [hidden]="segment_chart != 'chart_week'" style="height: 250px;">
+    <canvas #barChart_week></canvas>
+  </div>
     <canvas #barChart_month [hidden]="segment_chart != 'chart_month'"></canvas>
     <canvas #barChart_year [hidden]="segment_chart != 'chart_year'"></canvas>
     <canvas #barChart_all [hidden]="segment_chart != 'chart_all'"></canvas>
   </ion-card-content>
 </ion-card>
 
+<ion-toolbar class="ion-no-margin">
   <ion-segment
     [(ngModel)]="segment_chart"
     (ionChange)="segmentChanged_chart($event)"
@@ -24,5 +27,6 @@
       <ion-label>Year</ion-label>
     </ion-segment-button>
   </ion-segment>
+</ion-toolbar>
 
 

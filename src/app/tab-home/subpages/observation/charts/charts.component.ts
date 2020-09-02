@@ -53,8 +53,6 @@ export class ChartsComponent implements OnInit {
     this.CreateBarChart_all();
   }
 
-  ionViewDidEnter() {}
-
   InitializeData() {
 
     let data_week: any = [];
@@ -140,7 +138,7 @@ export class ChartsComponent implements OnInit {
         pointBackgroundColor: "#4169e1",
         pointBorderColor: "rgba(0,0,0,0)",
         pointBorderWidth: 1,
-        pointRadius: 3,
+        pointRadius: 0,
         data: data1,
       }]
     } else {
@@ -153,7 +151,7 @@ export class ChartsComponent implements OnInit {
           pointBackgroundColor: "#4169e1",
           pointBorderColor: "rgba(0,0,0,0)",
           pointBorderWidth: 1,
-          pointRadius: 3,
+          pointRadius: 0,
           data: data1,
         },{
           label: this.label,
@@ -163,7 +161,7 @@ export class ChartsComponent implements OnInit {
           pointBackgroundColor: "#3cb371",
           pointBorderColor: "rgba(0,0,0,0)",
           pointBorderWidth: 1,
-          pointRadius: 3,
+          pointRadius: 0,
           data: data2,
         }
       ]
@@ -219,11 +217,10 @@ export class ChartsComponent implements OnInit {
           display: true,
           text: this.label,
           fontSize: 16,
-          fontColor: "rgba(0,0,0,1)",
           padding: 14,
         },
         tooltips: {
-          mode: "nearest",
+          mode: "index",
           intersect: false,
         },
         annotation: {
@@ -240,7 +237,7 @@ export class ChartsComponent implements OnInit {
                 unit: 'month',
                 unitStepSize: 1,
                 displayFormats: {
-                  'month': 'DD/YYYY'
+                  'month': 'MM/YYYY'
                 }
               }
             },
@@ -276,7 +273,7 @@ export class ChartsComponent implements OnInit {
           padding: 14,
         },
         tooltips: {
-          mode: "nearest",
+          mode: "index",
           intersect: false,
         },
         annotation: {
@@ -328,7 +325,7 @@ export class ChartsComponent implements OnInit {
           padding: 14,
         },
         tooltips: {
-          mode: "nearest",
+          mode: "index",
           intersect: false,
         },
         annotation: {
@@ -380,7 +377,7 @@ export class ChartsComponent implements OnInit {
           padding: 14,
         },
         tooltips: {
-          mode: "nearest",
+          mode: "index",
           intersect: false,
         },
         annotation: {
@@ -397,7 +394,7 @@ export class ChartsComponent implements OnInit {
                 unit: 'month',
                 unitStepSize: 1,
                 displayFormats: {
-                  'month': 'DD/YYYY'
+                  'month': 'MM/YYYY'
                 }
               }
             },

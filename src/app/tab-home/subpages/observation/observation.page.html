@@ -1,45 +1,46 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons>
       <ion-back-button slot="start"></ion-back-button>
     </ion-buttons>
     <ion-title>Observations</ion-title>
     <ion-segment
       slot="end"
+      style="background: rgb(195, 225, 236)"
       (ionChange)="segmentChanged()"
       [(ngModel)]="segment"
     >
       <ion-segment-button value="0" style="width: 50px; min-width: 50px;">
-        <ion-icon name="calendar"></ion-icon>
+        <ion-icon name="calendar" color="primary"></ion-icon>
       </ion-segment-button>
       <ion-segment-button value="1" style="width: 50px; min-width: 50px;">
-        <ion-icon name="bar-chart"></ion-icon>
+        <ion-icon name="bar-chart" color="primary"></ion-icon>
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-no-padding" class="ion-no-margin">
+<ion-content class="ion-no-padding" color="light">
   <ion-slides
     #slides
     (ionSlideDidChange)="slideChanged()"
     class="ion-no-padding"
     class="ion-no-margin"
   >
-    <ion-slide>
+    <ion-slide class="slideHeight">
       <app-observation-list
         [observations]="observations"
-        style="width: 100%;"
+        class="fullWidth"
       ></app-observation-list>
     </ion-slide>
 
-    <ion-slide>
-      <ion-list style="width: 100%;">
-        <ion-item *ngFor="let data of chartData" lines="none">
+    <ion-slide class="slideHeight">
+      <ion-list style="width: 100%;" class="ion-no-padding">
+        <ion-item *ngFor="let data of chartData" lines="none" class="ion-no-margin" class="ion-no-padding">
           <app-charts
           [labels]="label"
           [labelData]="data"
-          style="width: 100%;"
+          class="fullWidth"
         ></app-charts>
         </ion-item>
       </ion-list>

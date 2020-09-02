@@ -1,9 +1,17 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>report</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-back-button slot="start"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Reports</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-list *ngFor="let rep of report">
+    <ion-item button [routerLink]="['/tabs/home/Patient/Reports/Report', rep.reportId]">
+      <ion-label color="dark"> {{ rep.datetime.slice(0, 16) }} </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

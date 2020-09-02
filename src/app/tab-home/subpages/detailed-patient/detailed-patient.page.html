@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons>
       <ion-back-button slot="start"></ion-back-button>
     </ion-buttons>
@@ -16,6 +16,7 @@
             style="zoom: 0.6;"
             [(ngModel)]="follow"
             (ionChange)="changeFollowStatus()"
+            color="success"
           ></ion-toggle>
         </h4>
       </ion-label>
@@ -46,7 +47,7 @@
       button
       [routerLink]="['/tabs/home/Patient/Observations', loadedPatient.id]"
     >
-      <ion-icon slot="start" name="eye"></ion-icon>
+      <ion-icon slot="start" name="eye" color="secondary"></ion-icon>
       <ion-label>Observations</ion-label>
       <ion-icon slot="end" name="forward-arrow"></ion-icon>
     </ion-item>
@@ -54,14 +55,14 @@
       button
       [routerLink]="['/tabs/home/Patient/Reports', loadedPatient.id]"
     >
-      <ion-icon slot="start" name="pulse"></ion-icon>
+      <ion-icon slot="start" name="pulse" color="danger"></ion-icon>
       <ion-label>Lab Report</ion-label>
     </ion-item>
     <ion-item
       button
       [routerLink]="['/tabs/home/Patient/Appointments', loadedPatient.id]"
     >
-      <ion-icon slot="start" name="calendar"></ion-icon>
+      <ion-icon slot="start" name="calendar" color="success"></ion-icon>
       <ion-label>Appointment</ion-label>
     </ion-item>
     <ion-item lines="none"></ion-item>

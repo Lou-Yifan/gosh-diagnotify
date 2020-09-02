@@ -1,62 +1,112 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { PatientService } from "../services/patient.service";
+import { AuthService } from "./auth.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class WatchListService {
+
+  // api
+  myApiUrl: string;
+  token: any;
+  headers: any;
+
+  // watchList
+  watchPatientIds: any;
   watchPatients: any = [];
-  myApiUrl: string = "https://localhost:5004";
+  // For home and watchList page to distinguish if watchList has changed
+  status_home: boolean = false;
+  status_watchList: boolean = false;
+
+  // account
   clinicianId: string = "C0001";
 
-  constructor(public http: HttpClient, public patientService: PatientService) {}
+
+
+  constructor(
+    public http: HttpClient,
+    public patientService: PatientService,
+    public authService: AuthService
+  ) {}
+
+  // **************************
+  // Get token and set headers
+  // **************************
+
+  getToken() {
+    this.token = this.authService.getToken();
+  }
+
+  setHeaders() {
+    this.getToken();
+    this.token = this.authService.token;
+    //console.log(this.token);
+    this.headers = new HttpHeaders({
+      Authorization:
+        "Bearer" + " " + this.token,
+    });
+  }
+
+  // ***************************
+  // WatchList Related
+  // ***************************
 
   // Get all the patients in the watchList
   getWatchPatients() {
+    this.setHeaders();
+    this.myApiUrl = this.authService.myApiUrl;
     return new Promise((resolve, reject) => {
-      this.http.get(this.myApiUrl + "/api/WatchList/Clinician/" + this.clinicianId).subscribe(
-        res => {
-        //console.log(res);
-        const patientList: any = res;
-        this.watchPatients = [];
-        for (let patient of patientList) {
-          //console.log(patient.patientId);
-          const loadedPatient = this.patientService.getPatientById(
-            patient.patientId
-          );
-          this.watchPatients.push(loadedPatient);
-          //console.log(this.watchPatients);
-        }
-        resolve(this.watchPatients);
-      }, err => {
-        reject(err);
-      }
-      );
-    })
-    
+      this.http
+        .get(this.myApiUrl + "/api/WatchList/Clinician/" + this.clinicianId, {headers: this.headers})
+        .subscribe(
+          (res) => {
+            //console.log(res);
+            this.watchPatientIds = res;
+            resolve(res);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
+    });
   }
 
   // Return watchPatients
-  returnWatchPatient(){
-    return this.watchPatients;
+  getWatchPatientsInfo() {
+    this.watchPatients = [];
+    for (let patient of this.watchPatientIds) {
+      const loadedPatient = this.patientService.getPatientById(patient.patientId);
+      this.watchPatients.push(loadedPatient);
+    }
+    //console.log("watchPatients: ", this.watchPatients);
   }
 
   // Post a patient to watchList
   postPatientToWatchList(patientId: string) {
+    this.setHeaders();
+    this.myApiUrl = this.authService.myApiUrl;
     const savedPatient = {
       ClinicianId: this.clinicianId,
       PatientId: patientId,
     };
     return this.http.post(this.myApiUrl + "/api/WatchList", savedPatient, {
-      headers: new HttpHeaders({ "content-Type": "application/json" }),
+      headers: this.headers
     });
   }
 
   // Delete a patient in watchList
   deletePatientInWatchList(patientId: string) {
+    this.setHeaders();
+    this.myApiUrl = this.authService.myApiUrl;
     return this.http.delete(
-      this.myApiUrl + "/api/WatchList/Patient/" + this.clinicianId + "/" + patientId
+      this.myApiUrl +
+        "/api/WatchList/Patient/" +
+        this.clinicianId +
+        "/" +
+        patientId,
+        {headers: this.headers}
     );
   }
 }

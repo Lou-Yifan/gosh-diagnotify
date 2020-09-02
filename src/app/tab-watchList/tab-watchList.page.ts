@@ -8,10 +8,9 @@ import { PatientService } from "../services/patient.service";
   styleUrls: ["tab-watchList.page.scss"],
 })
 export class WatchListPage {
-  watchPatients: any[] = [];
-  userId: string = "U123456";
-  imgUrl = 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2429260349,2150036447&fm=26&gp=0.jpg';
 
+  // watchList
+  watchPatients: any;
 
   constructor(
     public watchListService: WatchListService,
@@ -19,30 +18,36 @@ export class WatchListPage {
   ) {}
 
   ngOnInit() {
-
+    this.watchPatients = this.watchListService.watchPatients;
   }
 
-  ionViewDidEnter(){
-    this.patientService.getPatients().then(data =>{
-      this.InitializeData();
-    })
+  ionViewDidEnter() {
+    this.updateCheck();
   }
 
-  InitializeData() {
-    this.watchListService.getWatchPatients().then(data => {
-      this.watchPatients = this.watchListService.watchPatients;
-    })
-  }
-
-  doRefresh(event) {
-    console.log('Begin async operation');
-
-    setTimeout(() => {
-      this.patientService.getPatients().then(data =>{
-        this.InitializeData();
+  // Search function
+  searchPatient(ev: any) {
+    this.watchPatients = this.watchListService.watchPatients;
+    const val = ev.target.value;
+    if (val && val.trim() != "") {
+      this.watchPatients = this.watchPatients.filter((patient) => {
+        return patient.name.toLowerCase().indexOf(val.toLowerCase()) > -1;
       });
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 5000);
+    }
   }
+
+  // Get the avatar of every patient
+  obtainAvatar(patientId: string) {
+    return this.patientService.getAvatarById(patientId);
+  }
+
+  // check if watchPatients has updated
+  updateCheck() {
+    if (this.watchListService.status_watchList) {
+      this.watchPatients = this.watchListService.watchPatients;
+      this.watchListService.status_watchList = false;
+      console.log("status_watchlist: ", this.watchListService.status_watchList);
+    }
+  }
+
 }

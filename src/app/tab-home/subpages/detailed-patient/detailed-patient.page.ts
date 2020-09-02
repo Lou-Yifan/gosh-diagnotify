@@ -10,9 +10,12 @@ import { WatchListService } from "../../../services/watch-list.service";
   styleUrls: ["./detailed-patient.page.scss"],
 })
 export class DetailedPatientPage implements OnInit {
+
+  // patient related
   loadedPatient: any;
-  //imgUrl = 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2429260349,2150036447&fm=26&gp=0.jpg';
   loadedImgUrl: any;
+
+  // watchList
   follow: boolean;
   watchPatients: any;
 
@@ -35,66 +38,58 @@ export class DetailedPatientPage implements OnInit {
         return;
       }
       const loadedPatientId = paramMap.get("patientId");
-      //console.log(loadedPatientId);
+      //console.log("loadedId: ", loadedPatientId);
 
-      // get loaded patient data
       this.loadedPatient = this.patientService.getPatientById(loadedPatientId);
-      //console.log(this.loadedPatient);
+      //console.log("loadedPatient: ", this.loadedPatient);
+      this.loadedImgUrl = this.patientService.getAvatarById(loadedPatientId);
+      //console.log("loadedAvatar: ", this.loadedImgUrl);
+      this.watchPatients = this.watchListService.watchPatients;
+      //console.log("watchPatients: ", this.watchPatients);
 
-      // get patient avatar
-      this.patientService.getImgById(loadedPatientId).subscribe(
-        res => {
-          //console.log(res);
-          if (res['imgUrl']){
-            this.loadedImgUrl = res['imgUrl'];
-          } else {
-            this.loadedImgUrl = ''; // Default avatar
-          }
-        }, err => {
-          console.log(err);
+      // set the follow
+      this.follow = false;
+      for (let patient of this.watchPatients) {
+        if (patient.id == loadedPatientId) {
+          this.follow = true;
         }
-      )
-
-      // get patients in watchList and set follow
-      this.watchListService.getWatchPatients().then(data => {
-        this.watchPatients = this.watchListService.watchPatients;
-        //console.log(this.watchPatients);
-
-        this.follow = false;
-        for (let watchPatient of this.watchPatients) {
-          if (watchPatient.id === loadedPatientId) {
-            this.follow = true;
-          }
-        }
-      })
+      }
     })
   }
 
   changeFollowStatus(){
-    console.log(this.follow);
     const patientId = this.loadedPatient.id;
     if (this.follow){
-      console.log("add patient");
+      console.log("Follow this patient");
       this.watchListService.postPatientToWatchList(patientId).subscribe(
         res => {
-          console.log(res);
-          this.patientService.getPatients();
-          this.watchListService.getWatchPatients();
+          // refresh watchPatients
+          this.updateWatchPatients();
         }, err => {
           console.log(err);
         }
       )
     } else {
-      console.log("remove patient");
+      console.log("Remove this patient");
       this.watchListService.deletePatientInWatchList(patientId).subscribe(
         res => {
-          console.log(res);
-          this.patientService.getPatients();
-          this.watchListService.getWatchPatients();
+          // refresh watchPatients
+          this.updateWatchPatients();
         }, err => {
           console.log(err);
         }
       )
     }
+  }
+
+  updateWatchPatients() {
+    this.watchListService.getWatchPatients().then(data => {
+      this.watchListService.getWatchPatientsInfo();
+      // set the sign, so that the pages home and watchlist will refresh
+      this.watchListService.status_home = true;
+      this.watchListService.status_watchList = true;
+      console.log("status_home: ", this.watchListService.status_home);
+      console.log("status_watchList: ", this.watchListService.status_watchList);
+    });
   }
 }

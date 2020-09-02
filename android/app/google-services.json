@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "227558885373",
+    "firebase_url": "https://gosh-diagnotify.firebaseio.com",
+    "project_id": "gosh-diagnotify",
+    "storage_bucket": "gosh-diagnotify.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227558885373:android:ee0834492c09b335913b94",
+        "android_client_info": {
+          "package_name": "com.gosh.Health"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "227558885373-ohsug8oateg639hkppg08ejkor81kfdb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALchRG8spfRxUH8U6Fdvr0VJalzgtOHSw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "227558885373-ohsug8oateg639hkppg08ejkor81kfdb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

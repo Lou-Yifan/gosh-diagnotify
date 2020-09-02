@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary" class="ion-margin-bottom">
     <ion-title>
       Watch List
     </ion-title>
@@ -8,24 +8,20 @@
     <ion-searchbar
       animated
       showCancelButton="focus"
-      
+      (ionInput)="searchPatient($event)"
     ></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- pull to refresh -->
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
   
   <ion-list
-    *ngFor="let patient of watchPatients"
+    *ngFor="let patient of watchPatients;"
     [routerLink]="['/tabs/home/Patient', patient.id]"
   >
     <ion-item>
       <ion-avatar slot="start">
-        <ion-img [src]="imgUrl"></ion-img>
+        <ion-img [src]="obtainAvatar(patient.id)"></ion-img>
       </ion-avatar>
       <ion-label>
         <h2>

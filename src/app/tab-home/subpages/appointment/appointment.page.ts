@@ -33,6 +33,14 @@ export class AppointmentPage implements OnInit {
         res => {
           //console.log(res);
           this.appointments = res;
+          this.appointments.sort((a, b) => {
+            if (a.date < b.date) return 1;
+            if (a.date > b.date) return -1;
+            if (a.date = b.date) {
+              if (a.time < b.time) return 1;
+              if (a.time > b.time) return -1;
+            }
+          })
         }, err => {
           console.log(err);
         }

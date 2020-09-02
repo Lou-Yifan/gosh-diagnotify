@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-back-button slot="start"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Report({{ report[0].datetime.slice(0, 10) }})</ion-title>
+  </ion-toolbar>
+  <ion-segment (ionChange)="segmentChanged()" [(ngModel)]="segment" color="success">
+    <ion-segment-button value="0">
+      <ion-label color="dark">Tests</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="1">
+      <ion-label>Images</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="2">
+      <ion-label>Diagnose</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="3">
+      <ion-label>Medication</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content color="light">
+  <ion-slides #slides (ionSlideDidChange)="slideChanged()">
+    <ion-slide>
+      <app-tests [tests]="tests"></app-tests>
+    </ion-slide>
+
+    <ion-slide>
+      <app-images [images]="images" [datetime]="datetime"></app-images>
+    </ion-slide>
+
+    <ion-slide>
+      <app-diagnose [diagnoses]="diagnoses" [datetime]="datetime"></app-diagnose>
+    </ion-slide>
+
+    <ion-slide>
+      <app-medications [medications]="medications" [datetime]="datetime"></app-medications>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

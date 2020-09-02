@@ -27,11 +27,6 @@ export class ObservationPage implements OnInit {
     this.InitializeData();
   }
 
-  ionViewDidEnter() {
-    this.obtainObservations();
-    this.obtainChartData();
-  }
-
   InitializeData() {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       if (!paramMap.has("patientId")) {
@@ -41,17 +36,29 @@ export class ObservationPage implements OnInit {
       this.loadedPatientId = paramMap.get("patientId");
 
       // Get observation data from API and store them in the local service
-      this.patientService.getObservationsById(this.loadedPatientId);
-      //console.log(this.loadedPatientId);
-    });
-  }
+      this.patientService
+        .getObservationsById(this.loadedPatientId)
+        .subscribe((data) => {
+          // Sort the data to make the newest appointment first
+          const unsortedData: any = data;
+          this.observations = unsortedData.sort((a, b) => {
+            if (a.date < b.date) return 1;
+            if (a.date > b.date) return -1;
+            if ((a.date = b.date)) {
+              if (a.time < b.time) return 1;
+              if (a.time > b.time) return -1;
+            }
+          });
+          console.log("Observations: ", this.observations);
 
-  // Get observation data from local service
-  obtainObservations() {
-    this.observations = this.patientService.getLocalObservations(
-      this.loadedPatientId
-    );
-    //console.log(this.observations);
+          if (this.observations != []) {
+            this.obtainChartData();
+          } else {
+            this.label = [];
+            this.chartData = [];
+          }
+        });
+    });
   }
 
   // Get chart data
@@ -62,7 +69,7 @@ export class ObservationPage implements OnInit {
     let bh: any = [];
     let rr: any = [];
     let sr: any = [];
-    let reversedObservations = this.patientService.observations.reverse();
+    let reversedObservations = this.observations.reverse();
     for (let observation of reversedObservations) {
       labels.push(observation.date + " " + observation.time);
       bp.push(observation.observedItems[0].bloodPressures[0]);
@@ -73,8 +80,8 @@ export class ObservationPage implements OnInit {
     //console.log(bp);
     this.label = labels;
     this.chartData = [bp, bh, rr, sr];
-
-    //console.log(this.chartData);
+    //console.log("label: ", this.label);
+    //console.log("chartData: ", this.chartData);
   }
 
   async segmentChanged() {

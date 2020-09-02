@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary" class="ion-margin-bottom">
     <ion-title>
       Home
     </ion-title>
@@ -15,12 +15,12 @@
 
 <ion-content>
   <ion-list
-    *ngFor="let patient of patients"
+    *ngFor="let patient of patients; let i = index"
     [routerLink]="['/tabs/home/Patient', patient.id]"
   >
     <ion-item>
       <ion-avatar slot="start">
-        <ion-img [src]="imgUrl"></ion-img>
+        <ion-img [src]="obtainAvatar(patient.id)"></ion-img>
       </ion-avatar>
       <ion-label>
         <h2>

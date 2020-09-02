@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'Patient/Reports/:patientId',
     loadChildren: () => import('./subpages/report/report.module').then( m => m.ReportPageModule)
+  },
+  {
+    path: 'Patient/Reports/Report/:reportId',
+    loadChildren: () => import('./subpages/report/reports/reports.module').then( m => m.ReportsPageModule)
   }
 ];
 

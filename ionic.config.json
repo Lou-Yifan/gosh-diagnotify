@@ -1,7 +1,8 @@
 {
   "name": "gosh-diagnotify",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

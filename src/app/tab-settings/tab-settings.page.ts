@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SettingsService } from '../services/settings.service';
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +8,11 @@ import { Component } from '@angular/core';
 })
 export class SettingsPage {
 
-  constructor() {}
+  constructor(private settingsService: SettingsService) {}
+
+  changeMode() {
+    this.settingsService.toggleTheme();
+  }
+
 
 }

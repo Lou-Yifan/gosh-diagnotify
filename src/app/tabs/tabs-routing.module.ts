@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { AuthGuard } from '../login/auth.guard';
 
 const routes: Routes = [
   {
@@ -25,16 +26,21 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/home',
+        redirectTo: '/login-page',
         pathMatch: 'full'
       }
-    ]
+    ],
+    //canActivate: [AuthGuard]
   },
   {
     path: '',
-    redirectTo: '/tabs/home',
+    redirectTo: '/login-page',
     pathMatch: 'full'
-  }
+  },
+  {
+    path: 'login-page',
+    loadChildren: () => import('../login/login-page/login-page.module').then( m => m.LoginPagePageModule)
+  },
 ];
 
 @NgModule({
