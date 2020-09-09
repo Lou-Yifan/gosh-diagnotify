@@ -9,7 +9,6 @@ import { AuthService } from "../services/auth.service";
   styleUrls: ["tab-home.page.scss"],
 })
 export class HomePage {
-
   // api related
   token: any;
 
@@ -23,8 +22,7 @@ export class HomePage {
     public patientService: PatientService,
     public watchListService: WatchListService,
     public authService: AuthService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.InitializeData();
@@ -35,24 +33,30 @@ export class HomePage {
   }
 
   InitializeData() {
-    // Get all the data from API
-    let p = this.patientService.getPatients();
-    let w = this.watchListService.getWatchPatients();
-    let i = this.patientService.getAvatars();
+    //console.log("email: ", this.watchListService.email);
+    this.watchListService.getUser().subscribe((data) => {
+      //console.log("user: ", data);
+      let user: any = data;
+      this.watchListService.clinicianId = user[0].clinicianId;
+      // Get all the data from API
+      let p = this.patientService.getPatients();
+      let w = this.watchListService.getWatchPatients();
+      let i = this.patientService.getAvatars();
 
-    Promise.all([p, w]).then(data => {
-      this.patients = this.patientService.patients;
-      //console.log("patients: ", this.patients);
-      this.watchListService.getWatchPatientsInfo();
-      this.watchPatients = this.watchListService.watchPatients;
-      //console.log("watchPatients: ", this.watchPatients);
+      Promise.all([p, w]).then((data) => {
+        this.patients = this.patientService.patients;
+        //console.log("patients: ", this.patients);
+        this.watchListService.getWatchPatientsInfo();
+        this.watchPatients = this.watchListService.watchPatients;
+        //console.log("watchPatients: ", this.watchPatients);
+      });
     });
   }
 
   // If the patient is followed, the mark should be lighted
-  checkIfFollowed(patient:any){
+  checkIfFollowed(patient: any) {
     //console.log(patient.id);
-    for (let watchPatient of this.watchPatients){
+    for (let watchPatient of this.watchPatients) {
       if (watchPatient.id === patient.id) {
         return "warning";
       }
@@ -86,32 +90,34 @@ export class HomePage {
   }
 
   // Follow and cancel
-  follow(patientId){
+  follow(patientId) {
     console.log("follow this patient");
     this.watchListService.postPatientToWatchList(patientId).subscribe(
-      res => {
+      (res) => {
         // refresh watchPatients
         this.updateWatchPatients();
-      }, err => {
+      },
+      (err) => {
         console.log(err);
       }
-    )
+    );
   }
 
-  unfollow(patientId){
+  unfollow(patientId) {
     console.log("cancel following this patient");
     this.watchListService.deletePatientInWatchList(patientId).subscribe(
-      res => {
+      (res) => {
         // refresh watchPatients
         this.updateWatchPatients();
-      }, err => {
+      },
+      (err) => {
         console.log(err);
       }
-    )
+    );
   }
 
   updateWatchPatients() {
-    this.watchListService.getWatchPatients().then(data => {
+    this.watchListService.getWatchPatients().then((data) => {
       this.watchListService.getWatchPatientsInfo();
       // set the sign, so that the pages home and watchlist will refresh
       this.watchListService.status_home = true;
@@ -121,5 +127,4 @@ export class HomePage {
       this.updateCheck();
     });
   }
-
 }

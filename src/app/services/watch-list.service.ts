@@ -7,7 +7,6 @@ import { AuthService } from "./auth.service";
   providedIn: "root",
 })
 export class WatchListService {
-
   // api
   myApiUrl: string;
   token: any;
@@ -21,9 +20,8 @@ export class WatchListService {
   status_watchList: boolean = false;
 
   // account
-  clinicianId: string = "C0001";
-
-
+  email: any;
+  clinicianId: any;
 
   constructor(
     public http: HttpClient,
@@ -44,8 +42,16 @@ export class WatchListService {
     this.token = this.authService.token;
     //console.log(this.token);
     this.headers = new HttpHeaders({
-      Authorization:
-        "Bearer" + " " + this.token,
+      Authorization: "Bearer" + " " + this.token,
+    });
+  }
+
+  // Get user
+  getUser() {
+    this.setHeaders();
+    this.myApiUrl = this.authService.myApiUrl;
+    return this.http.get(this.myApiUrl + "/api/Clinician/Email/" + this.email, {
+      headers: this.headers,
     });
   }
 
@@ -57,9 +63,12 @@ export class WatchListService {
   getWatchPatients() {
     this.setHeaders();
     this.myApiUrl = this.authService.myApiUrl;
+    //console.log("ClinicianId: ", this.clinicianId);
     return new Promise((resolve, reject) => {
       this.http
-        .get(this.myApiUrl + "/api/WatchList/Clinician/" + this.clinicianId, {headers: this.headers})
+        .get(this.myApiUrl + "/api/WatchList/Clinician/" + this.clinicianId, {
+          headers: this.headers,
+        })
         .subscribe(
           (res) => {
             //console.log(res);
@@ -77,7 +86,9 @@ export class WatchListService {
   getWatchPatientsInfo() {
     this.watchPatients = [];
     for (let patient of this.watchPatientIds) {
-      const loadedPatient = this.patientService.getPatientById(patient.patientId);
+      const loadedPatient = this.patientService.getPatientById(
+        patient.patientId
+      );
       this.watchPatients.push(loadedPatient);
     }
     //console.log("watchPatients: ", this.watchPatients);
@@ -92,7 +103,7 @@ export class WatchListService {
       PatientId: patientId,
     };
     return this.http.post(this.myApiUrl + "/api/WatchList", savedPatient, {
-      headers: this.headers
+      headers: this.headers,
     });
   }
 
@@ -106,7 +117,7 @@ export class WatchListService {
         this.clinicianId +
         "/" +
         patientId,
-        {headers: this.headers}
+      { headers: this.headers }
     );
   }
 }

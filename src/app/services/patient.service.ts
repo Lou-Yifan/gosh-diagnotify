@@ -113,6 +113,13 @@ export class PatientService {
     return this.http.get(this.myApiUrl+"/api/Appointment/Patient/"+patientId, {headers: this.headers});
   }
 
+  // Get the name of clinician
+  getClinicianName(clinicianId){
+    this.setHeaders();
+    this.myApiUrl = this.authService.myApiUrl;
+    return this.http.get(this.myApiUrl+"/api/Clinician/"+clinicianId, {headers: this.headers});
+  }
+
   // *****************************************************************************************
   // Observation Related
   // *****************************************************************************************

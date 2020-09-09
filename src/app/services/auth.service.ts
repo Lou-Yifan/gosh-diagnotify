@@ -44,7 +44,7 @@ export class AuthService {
             },
             (error) => console.error("Error storing item", error)
           );
-          //this.token = token;
+          this.token = token;
           this.isLoggedIn = true;
           return token;
         })
@@ -62,40 +62,26 @@ export class AuthService {
       return "Already logout";
   }
 
-  getUser() {
-    const headers = new HttpHeaders({
-      Authorization:
-        this.token["token_type"] + " " + this.token["access_token"],
-    });
-    return this.http
-      .get(this.myApiUrl + "api/Clinician", { headers: headers })
-      .pipe(
-        tap((user) => {
-          return user;
-        })
-      );
+  getToken() {
+    return this.storage.getItem("token").then(
+      (data) => {
+        this.token = data;
+        if (this.token != null) {
+          this.isLoggedIn = true;
+        } else {
+          this.isLoggedIn = false;
+        }
+      },
+      (error) => {
+        this.token = null;
+        this.isLoggedIn = false;
+      }
+    );
   }
-
-  // getToken() {
-  //   return this.storage.getItem("token").then(
-  //     (data) => {
-  //       this.token = data;
-  //       if (this.token != null) {
-  //         this.isLoggedIn = true;
-  //       } else {
-  //         this.isLoggedIn = false;
-  //       }
-  //     },
-  //     (error) => {
-  //       this.token = null;
-  //       this.isLoggedIn = false;
-  //     }
-  //   );
-  // }
 
   //For test
-  getToken() {
-    this.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJIZWFsdGhTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiIxZjViZmRlZC1kZTMzLTRiMDUtOGE4Zi1kMmNlZGVhYmM4MjgiLCJpYXQiOiI5LzkvMjAyMCA3OjUyOjI1IFBNIiwiQ2xpbmljaWFuSWQiOiJDMDAwMSIsIkNsaW5pY2lhbk5hbWUiOiJKb3NlcGggV29vZHMiLCJFbWFpbCI6InlpZmFuLmxvdUB1Y2wuYWMudWsiLCJleHAiOjE1OTk3Njc1NDUsImlzcyI6IkhlYWx0aEF1dGhlbnRpY2F0aW9uU2VydmVyIiwiYXVkIjoiSGVhbHRoU2VydmljZVBvc3RtYW5DbGllbnQifQ.WKjk0XVA68zaRYztpZkwtv6SLLPX7iaoH-RIrpOjSLw";
-    return this.token;
-  }
+  // getToken() {
+  //   this.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJIZWFsdGhTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiIxZjViZmRlZC1kZTMzLTRiMDUtOGE4Zi1kMmNlZGVhYmM4MjgiLCJpYXQiOiI5LzkvMjAyMCA3OjUyOjI1IFBNIiwiQ2xpbmljaWFuSWQiOiJDMDAwMSIsIkNsaW5pY2lhbk5hbWUiOiJKb3NlcGggV29vZHMiLCJFbWFpbCI6InlpZmFuLmxvdUB1Y2wuYWMudWsiLCJleHAiOjE1OTk3Njc1NDUsImlzcyI6IkhlYWx0aEF1dGhlbnRpY2F0aW9uU2VydmVyIiwiYXVkIjoiSGVhbHRoU2VydmljZVBvc3RtYW5DbGllbnQifQ.WKjk0XVA68zaRYztpZkwtv6SLLPX7iaoH-RIrpOjSLw";
+  //   return this.token;
+  // }
 }

@@ -34,7 +34,19 @@ export class AppointmentPage implements OnInit {
       this.patientService.getAppointmentsById(loadedPatientId).subscribe(
         res => {
           this.appointments = res;
-          console.log("appointments: ", this.appointments);
+          //console.log("appointments: ", this.appointments);
+
+          // Get clinician name
+          for(let i=0; i<this.appointments.length; i++) {
+            this.patientService.getClinicianName(this.appointments[i].clinicianId).subscribe(data => {
+              let clinician:any = data;
+              //console.log("clinician: ", clinician)
+              this.appointments[i]["clinicianName"] = clinician.clinicianName;
+              //console.log("appointments: ", this.appointments);
+            })
+          }
+
+          // sort
           this.appointments.sort((a, b) => {
             if (a.date < b.date) return 1;
             if (a.date > b.date) return -1;
