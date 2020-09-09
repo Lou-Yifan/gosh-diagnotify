@@ -15,10 +15,9 @@
 
 <ion-content>
   <ion-list
-    *ngFor="let patient of patients; let i = index"
-    [routerLink]="['/tabs/home/Patient', patient.id]"
-  >
-    <ion-item>
+    *ngFor="let patient of patients; let i = index">
+    <ion-item-sliding>
+    <ion-item [routerLink]="['/tabs/home/Patient', patient.id]">
       <ion-avatar slot="start">
         <ion-img [src]="obtainAvatar(patient.id)"></ion-img>
       </ion-avatar>
@@ -33,5 +32,16 @@
         <p>Date of Birth: {{ patient.birthDate }}</p>
       </ion-label>
     </ion-item>
+
+    <ion-item-options side="end">
+      <button ion-button class="slideBtn_follow" (click)="follow(patient.id)">
+        Follow
+      </button>
+      <button ion-button class="slideBtn_cancel" (click)="unfollow(patient.id)">
+        Unfollow
+      </button>
+    </ion-item-options>
+
+  </ion-item-sliding>
   </ion-list>
 </ion-content>

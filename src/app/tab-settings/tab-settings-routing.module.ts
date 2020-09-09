@@ -6,6 +6,14 @@ const routes: Routes = [
   {
     path: '',
     component: SettingsPage,
+  },
+  {
+    path: 'card-color',
+    loadChildren: () => import('./card-color/card-color.module').then( m => m.CardColorPageModule)
+  },
+  {
+    path: 'font-size',
+    loadChildren: () => import('./font-size/font-size.module').then( m => m.FontSizePageModule)
   }
 ];
 

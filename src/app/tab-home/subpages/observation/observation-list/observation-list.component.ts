@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
   selector: 'app-observation-list',
@@ -9,8 +10,11 @@ export class ObservationListComponent implements OnInit {
 
   @Input() observations: any;
 
-  constructor() { }
+  constructor(private settings: SettingsService) { }
 
   ngOnInit() {}
 
+  myFont(){
+    return this.settings.myFont;
+  }
 }

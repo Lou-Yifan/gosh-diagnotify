@@ -85,4 +85,41 @@ export class HomePage {
     }
   }
 
+  // Follow and cancel
+  follow(patientId){
+    console.log("follow this patient");
+    this.watchListService.postPatientToWatchList(patientId).subscribe(
+      res => {
+        // refresh watchPatients
+        this.updateWatchPatients();
+      }, err => {
+        console.log(err);
+      }
+    )
+  }
+
+  unfollow(patientId){
+    console.log("cancel following this patient");
+    this.watchListService.deletePatientInWatchList(patientId).subscribe(
+      res => {
+        // refresh watchPatients
+        this.updateWatchPatients();
+      }, err => {
+        console.log(err);
+      }
+    )
+  }
+
+  updateWatchPatients() {
+    this.watchListService.getWatchPatients().then(data => {
+      this.watchListService.getWatchPatientsInfo();
+      // set the sign, so that the pages home and watchlist will refresh
+      this.watchListService.status_home = true;
+      this.watchListService.status_watchList = true;
+      console.log("status_home: ", this.watchListService.status_home);
+      console.log("status_watchList: ", this.watchListService.status_watchList);
+      this.updateCheck();
+    });
+  }
+
 }

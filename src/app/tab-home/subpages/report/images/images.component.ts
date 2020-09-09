@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { PhotoViewer } from "@ionic-native/photo-viewer/ngx";
-import { Platform } from "@ionic/angular";
+import { Platform, ModalController } from "@ionic/angular";
+import { ImageModalPage } from './image-modal/image-modal.page';
 
 @Component({
   selector: "app-images",
@@ -13,12 +13,18 @@ export class ImagesComponent implements OnInit {
 
   image_CT: any;
   image_MRI: any;
+  sliderOpts = {
+    zoom: false,
+  }
 
-  constructor(public platform: Platform, public viewer: PhotoViewer) {
+  constructor(
+    public platform: Platform,
+    private modalController: ModalController
+  ) {
     this.platform.ready();
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.InitializeData();
   }
 
@@ -26,28 +32,37 @@ export class ImagesComponent implements OnInit {
     //console.log("images: ", this.images);
 
     // Get all CT images
-    this.image_CT = this.images.filter(img => {
-      if (img.imageName == "CT Scan") {
-        return img;
-      }
-    }).map(img => {
-      return img.imageUrl;
-    });
+    this.image_CT = this.images
+      .filter((img) => {
+        if (img.imageName == "CT Scan") {
+          return img;
+        }
+      })
+      .map((img) => {
+        return img.imageUrl;
+      });
     //console.log("image_CT: ", this.image_CT);
 
     // Get all MRI images
-    this.image_MRI = this.images.filter(img => {
-      if (img.imageName == "MRI") {
-        return img;
+    this.image_MRI = this.images
+      .filter((img) => {
+        if (img.imageName == "MRI") {
+          return img;
+        }
+      })
+      .map((img) => {
+        return img.imageUrl;
+      });
+    console.log("image_MRI: ", this.image_MRI);
+  }
+
+  openPreview(image) {
+    this.modalController.create({
+      component: ImageModalPage,
+      componentProps: {
+        image: image
       }
-    }).map(img => {
-      return img.imageUrl;
-    });
-    //console.log("image_MRI: ", this.image_MRI);
+    }).then(modal => modal.present());
   }
 
-
-  ZoomPhoto(url) {
-    this.viewer.show(url, "", {share: true});
-  }
 }

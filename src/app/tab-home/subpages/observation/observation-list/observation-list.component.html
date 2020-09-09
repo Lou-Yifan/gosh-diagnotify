@@ -1,4 +1,4 @@
-<ion-card *ngFor="let observation of observations">
+<ion-card *ngFor="let observation of observations" color="cardcolor">
   <ion-card-header>
     <ion-label color="dark">
       <ion-icon name="podium" color="secondary"></ion-icon>
@@ -14,66 +14,66 @@
     <ion-grid>
       <ion-row>
         <ion-col size="6">
-          <h5 class="ion-text-left">
+          <p [ngStyle]="{'font-size': myFont()}" class="ion-text-left">
             {{ observation.observedItems[0].bloodPressures[0].item }}
-          </h5>
+          </p>
         </ion-col>
         <ion-col size="6">
-          <h5 class="ion-text-left">
+          <p [ngStyle]="{'font-size': myFont()}" class="ion-text-left">
             {{ observation.observedItems[0].bloodPressures[0].value }}&nbsp;{{
               observation.observedItems[0].bloodPressures[0].unit
             }}
-          </h5>
+          </p>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col size="6">
-          <h5 class="ion-text-left">
+          <p [ngStyle]="{'font-size': myFont()}" class="ion-text-left">
             {{ observation.observedItems[0].bodyHeats[0].item }}
-          </h5>
+          </p>
         </ion-col>
         <ion-col size="6">
-          <h5 class="ion-text-left">
+          <p [ngStyle]="{'font-size': myFont()}" class="ion-text-left">
             {{ observation.observedItems[0].bodyHeats[0].value }}&nbsp;{{
               observation.observedItems[0].bodyHeats[0].unit
             }}
-          </h5>
+          </p>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col size="6">
-          <h5 class="ion-text-left">
+          <p [ngStyle]="{'font-size': myFont()}" class="ion-text-left">
             {{ observation.observedItems[0].respiratoryRates[0].item }}
-          </h5>
+          </p>
         </ion-col>
         <ion-col size="6">
-          <h5 class="ion-text-left">
+          <p [ngStyle]="{'font-size': myFont()}" class="ion-text-left">
             {{ observation.observedItems[0].respiratoryRates[0].value }}&nbsp;{{
               observation.observedItems[0].respiratoryRates[0].unit
             }}
-          </h5>
+          </p>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col size="6">
-          <h5 class="ion-text-left">
+          <p [ngStyle]="{'font-size': myFont()}" class="ion-text-left">
             {{ observation.observedItems[0].sinusRhythms[0].item }}
-          </h5>
+          </p>
         </ion-col>
         <ion-col size="6">
-          <h5 class="ion-text-left">
+          <p [ngStyle]="{'font-size': myFont()}" class="ion-text-left">
             {{ observation.observedItems[0].sinusRhythms[0].value }}&nbsp;{{
               observation.observedItems[0].sinusRhythms[0].unit
             }}
-          </h5>
+          </p>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card-content>
 </ion-card>
-<ion-item>
+<ion-item *ngIf="observations == []">
   <ion-label>No Observation Record</ion-label>
 </ion-item>

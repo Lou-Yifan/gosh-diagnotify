@@ -8,19 +8,19 @@
 </ion-header>
 
 <ion-content color="light">
-  <ion-card *ngFor="let appointment of appointments">
+  <ion-card *ngFor="let appointment of appointments" color="cardcolor">
     <ion-card-header>
       <ion-label color="dark">
-        <ion-icon name="today-outline" color="success"></ion-icon>
+        <ion-icon name="today-outline" color="success" slot="start"></ion-icon>
         <h2 style="display: inline-block;">&nbsp;{{ appointment.date }}</h2>
         <h2 style="display: inline-block;">&nbsp;{{ appointment.time.slice(0, 5) }}</h2>
-        <h3>Event:  {{ appointment.event }}</h3>
       </ion-label>
     </ion-card-header>
     <ion-card-content>
-      <h5>Department: {{ appointment.department }}</h5>
-      <h5>Clinician:  {{ appointment.clinicianId }}</h5>
-      <h5>Location: {{ appointment.floor }}, {{ appointment.room }}</h5>
+      <p [ngStyle]="{'font-size': myFont()}">Event:  {{ appointment.event }}</p>
+      <p [ngStyle]="{'font-size': myFont()}">Department: {{ appointment.department }}</p>
+      <p [ngStyle]="{'font-size': myFont()}">Clinician:  {{ appointment.clinicianId }}</p>
+      <p [ngStyle]="{'font-size': myFont()}">Location: {{ appointment.floor }}, {{ appointment.room }}</p>
     </ion-card-content>
   </ion-card>
 

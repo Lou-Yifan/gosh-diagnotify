@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ReportPage
+  },
+  {
+    path: 'image-modal',
+    loadChildren: () => import('./images/image-modal/image-modal.module').then( m => m.ImageModalPageModule)
   }
 ];
 

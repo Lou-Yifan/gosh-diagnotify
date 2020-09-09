@@ -6,6 +6,7 @@ import { Platform } from '@ionic/angular';
 })
 export class SettingsService {
   darkMode = false;
+  myFont = "14px";
 
   constructor(private plt: Platform) { 
     this.plt.ready().then(() => {

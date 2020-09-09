@@ -13,11 +13,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+import { ImageModalPageModule } from './tab-home/subpages/report/images/image-modal/image-modal.module';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ImageModalPageModule],
   providers: [
     StatusBar,
     SplashScreen,

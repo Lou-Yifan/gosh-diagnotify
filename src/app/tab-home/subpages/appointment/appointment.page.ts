@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { PatientService } from "../../../services/patient.service";
 import { ActivatedRoute } from "@angular/router";
 import { NavController } from "@ionic/angular";
+import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
   selector: "app-appointment",
@@ -14,7 +15,8 @@ export class AppointmentPage implements OnInit {
   constructor(
     public patientService: PatientService,
     public activatedRoute: ActivatedRoute,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public settings: SettingsService,
   ) {}
 
   ngOnInit() {
@@ -31,8 +33,8 @@ export class AppointmentPage implements OnInit {
       //console.log(loadedPatientId);
       this.patientService.getAppointmentsById(loadedPatientId).subscribe(
         res => {
-          //console.log(res);
           this.appointments = res;
+          console.log("appointments: ", this.appointments);
           this.appointments.sort((a, b) => {
             if (a.date < b.date) return 1;
             if (a.date > b.date) return -1;
@@ -46,5 +48,10 @@ export class AppointmentPage implements OnInit {
         }
       )
     })
+  }
+
+  // Setting card font-size
+  myFont(){
+    return this.settings.myFont;
   }
 }

@@ -9,7 +9,8 @@
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
   --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  --ion-color-primary-tint: #3880ff;
+  //--ion-color-primary-tint: #4c8dff;
 
   /** secondary **/
   --ion-color-secondary: #3dc2ff;
@@ -82,6 +83,14 @@
   --ion-color-purple-contrast-rgb: 255, 255, 255;
   --ion-color-purple-shade: #70094e;
   --ion-color-purple-tint: #70094e;
+
+  /** customized card background color **/
+  --ion-color-cardcolor: #ffffff;
+  --ion-color-cardcolor-rgb: 109, 211, 230;
+  --ion-color-cardcolor-contrast: #000000;
+  --ion-color-cardcolor-contrast-rgb: 255, 255, 255;
+  --ion-color-cardcolor-shade: #5a5a5a;
+  --ion-color-cardcolor-tint: #525252;
 }
 
 //@media (prefers-color-scheme: dark) {
@@ -99,7 +108,7 @@ body.dark {
   --ion-color-primary-shade: #3a7be0;
   --ion-color-primary-tint: #5598ff;
 
-  --ion-color-secondary: #286a88;
+  --ion-color-secondary: #77c0e2;
   //--ion-color-secondary: #50c8ff;
   --ion-color-secondary-rgb: 80, 200, 255;
   --ion-color-secondary-contrast: #ffffff;
@@ -159,6 +168,14 @@ body.dark {
   --ion-color-light-contrast-rgb: 255, 255, 255;
   --ion-color-light-shade: #1e2023;
   --ion-color-light-tint: #383a3e;
+
+  /** customized card background color **/
+  --ion-color-cardcolor: #000000;
+  --ion-color-cardcolor-rgb: 109, 211, 230;
+  --ion-color-cardcolor-contrast: #dddcdc;
+  --ion-color-cardcolor-contrast-rgb: 255, 255, 255;
+  --ion-color-cardcolor-shade: #5a5a5a;
+  --ion-color-cardcolor-tint: #525252;
 }
 
 /*
@@ -251,4 +268,13 @@ body.dark {
   --ion-color-contrast-rgb: var(--ion-color-purple-contrast-rgb);
   --ion-color-shade: var(--ion-color-purple-shade);
   --ion-color-tint: var(--ion-color-purple-tint);
+}
+
+.ion-color-cardcolor {
+  --ion-color-base: var(--ion-color-cardcolor);
+  --ion-color-base-rgb: var(--ion-color-cardcolor-rgb);
+  --ion-color-contrast: var(--ion-color-cardcolor-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-cardcolor-contrast-rgb);
+  --ion-color-shade: var(--ion-color-cardcolor-shade);
+  --ion-color-tint: var(--ion-color-cardcolor-tint);
 }

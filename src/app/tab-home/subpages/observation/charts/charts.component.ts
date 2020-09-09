@@ -55,6 +55,9 @@ export class ChartsComponent implements OnInit {
 
   InitializeData() {
 
+    //console.log(this.labels);
+    //console.log(this.labelData);
+
     let data_week: any = [];
     let data_week_2: any = [];
     let data_month: any = [];
@@ -64,7 +67,10 @@ export class ChartsComponent implements OnInit {
     let data_all: any = [];
     let data_all_2: any = [];
 
+    console.log("labels: ", this.labels);
     for (let date of this.labels) {
+      date = date.slice(0, 4)+"/"+date.slice(5,7)+"/"+date.slice(8);
+      console.log("date: ", date);
       this.labels_all.push(new Date(date));
     }
     for (let value of this.labelData) {
@@ -82,8 +88,8 @@ export class ChartsComponent implements OnInit {
       }
     }
     //console.log(this.label);
-    // console.log(this.labels_all);
-    // console.log(this.data_all);
+    console.log("labels_all: ", this.labels_all);
+    //console.log("data_all: ", data_all);
     // console.log(this.data_all_2);
 
     const currentDate = new Date();
@@ -125,7 +131,7 @@ export class ChartsComponent implements OnInit {
     this.dataSet_month = this.getDataSet(data_month, data_month_2);
     this.dataSet_year = this.getDataSet(data_year, data_year_2);
 
-    //console.log(this.dataSet_all);
+    //console.log("dataSet_all: ", this.dataSet_all);
   }
 
   getDataSet(data1, data2){
@@ -269,7 +275,6 @@ export class ChartsComponent implements OnInit {
           display: true,
           text: this.label,
           fontSize: 16,
-          fontColor: "rgba(0,0,0,1)",
           padding: 14,
         },
         tooltips: {
@@ -321,7 +326,6 @@ export class ChartsComponent implements OnInit {
           display: true,
           text: this.label,
           fontSize: 16,
-          fontColor: "rgba(0,0,0,1)",
           padding: 14,
         },
         tooltips: {
@@ -373,7 +377,6 @@ export class ChartsComponent implements OnInit {
           display: true,
           text: this.label,
           fontSize: 16,
-          fontColor: "rgba(0,0,0,1)",
           padding: 14,
         },
         tooltips: {

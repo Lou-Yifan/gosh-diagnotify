@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-back-button slot="start"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Card color</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+
+  <ion-card color="cardcolor">
+    <ion-card-header class="ion-margin-vertical">
+      <ion-card-title> Example Card </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <h5 class="myFont">
+        Diagnotify is an app designed for hospital to manage patient records.
+        The font size and card background color can be customized. Hope you have
+        a great day!
+      </h5>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="bottom">
+    <ion-card-header>
+      <h3 color="dark">Click to set color</h3>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="center">
+            <button
+              ion-button
+              style="background-color: #ffffff"
+              class="colorBtn"
+              (click)="changeColor('#ffffff')"
+            ></button>
+          </ion-col>
+          <ion-col class="center">
+            <button
+              ion-button
+              style="background-color: #f0fcff"
+              class="colorBtn"
+              (click)="changeColor('#f0fcff')"
+            ></button>
+          </ion-col>
+          <ion-col class="center">
+            <button
+              ion-button
+              style="background-color: #fcefe8"
+              class="colorBtn"
+              (click)="changeColor('#fcefe8')"
+            ></button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col class="center">
+            <button
+              ion-button
+              style="background-color: #e0f0e9"
+              class="colorBtn"
+              (click)="changeColor('#e0f0e9')"
+            ></button>
+          </ion-col>
+          <ion-col class="center">
+            <button
+              ion-button
+              style="background-color: #f0e8e0"
+              class="colorBtn"
+              (click)="changeColor('#f0e8e0')"
+            ></button>
+          </ion-col>
+          <ion-col class="center">
+            <button
+              ion-button
+              style="background-color: #eee0f0"
+              class="colorBtn"
+              (click)="changeColor('#eee0f0')"
+            ></button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

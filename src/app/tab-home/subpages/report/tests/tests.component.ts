@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
   selector: 'app-tests',
@@ -8,8 +9,11 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TestsComponent implements OnInit {
   @Input() tests: any;
 
-  constructor() { }
+  constructor(private settings: SettingsService) { }
 
   ngOnInit() {}
 
+  myFont(){
+    return this.settings.myFont;
+  }
 }

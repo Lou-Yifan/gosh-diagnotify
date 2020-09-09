@@ -1,29 +1,29 @@
 <ion-card>
   <ion-card-header style="text-align: left">
-    <h2 style="padding-left: 5px;" color="dark">CT Scan</h2>
-    <ion-label style="padding-left: 5px;"> {{ datetime }} </ion-label>
+    <h2 style="padding-left: 5px" color="dark">CT Scan</h2>
+    <ion-label style="padding-left: 5px"> {{ datetime }} </ion-label>
   </ion-card-header>
   <ion-card-content>
     <ion-grid>
       <ion-row>
         <ion-col size="3" *ngFor="let image of image_CT">
-          <img src={{image}} (click)="ZoomPhoto(image)">
+          <img [src]="image" tappable (click)="openPreview(image)" />
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card-content>
 </ion-card>
 
-<ion-card>
+<ion-card color="cardcolor">
   <ion-card-header style="text-align: left">
-    <h2 style="padding-left: 5px;" color="dark">MRI</h2>
-    <ion-label style="padding-left: 5px;"> {{ datetime }} </ion-label>
+    <h2 style="padding-left: 5px" color="dark">MRI</h2>
+    <ion-label style="padding-left: 5px"> {{ datetime }} </ion-label>
   </ion-card-header>
   <ion-card-content>
     <ion-grid>
       <ion-row>
         <ion-col size="3" *ngFor="let image of image_MRI">
-          <img src={{image}} (click)="ZoomPhoto(image)">
+          <img [src]="image" tappable (click)="openPreview(image)" />
         </ion-col>
       </ion-row>
     </ion-grid>

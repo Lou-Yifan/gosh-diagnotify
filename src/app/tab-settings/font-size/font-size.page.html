@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-back-button slot="start"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Font size</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+
+  <ion-card color="cardcolor">
+    <ion-card-header class="ion-margin-vertical">
+      <ion-card-title> Example Card </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p [ngStyle]="{'font-size': myFont()}">
+        Diagnotify is an app designed for hospital to manage patient records.
+        The font size and card background color can be customized. Hope you have
+        a great day!
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="bottom">
+    <ion-card-content>
+      <ion-list>
+        <ion-radio-group value="default">
+          <ion-list-header>
+            <ion-label>Setting font size</ion-label>
+          </ion-list-header>
+      
+          <ion-item (click)="changeSize('18px')">
+            <ion-label>Very Big</ion-label>
+            <ion-radio slot="start" value="veryBig"></ion-radio>
+          </ion-item>
+
+          <ion-item (click)="changeSize('16px')">
+            <ion-label>Big</ion-label>
+            <ion-radio slot="start" value="big"></ion-radio>
+          </ion-item>
+      
+          <ion-item (click)="changeSize('14px')">
+            <ion-label>Default</ion-label>
+            <ion-radio slot="start" value="default"></ion-radio>
+          </ion-item>
+      
+          <ion-item (click)="changeSize('12px')">
+            <ion-label>Small</ion-label>
+            <ion-radio slot="start" value="small"></ion-radio>
+          </ion-item>
+
+          <ion-item (click)="changeSize('10px')">
+            <ion-label>Very Small</ion-label>
+            <ion-radio slot="start" value="verySmall"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
