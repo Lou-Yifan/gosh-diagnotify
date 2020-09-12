@@ -79,9 +79,9 @@ export class AuthService {
     );
   }
 
-  //For test
+  //For test on web
   // getToken() {
-  //   this.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJIZWFsdGhTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiIxZjViZmRlZC1kZTMzLTRiMDUtOGE4Zi1kMmNlZGVhYmM4MjgiLCJpYXQiOiI5LzkvMjAyMCA3OjUyOjI1IFBNIiwiQ2xpbmljaWFuSWQiOiJDMDAwMSIsIkNsaW5pY2lhbk5hbWUiOiJKb3NlcGggV29vZHMiLCJFbWFpbCI6InlpZmFuLmxvdUB1Y2wuYWMudWsiLCJleHAiOjE1OTk3Njc1NDUsImlzcyI6IkhlYWx0aEF1dGhlbnRpY2F0aW9uU2VydmVyIiwiYXVkIjoiSGVhbHRoU2VydmljZVBvc3RtYW5DbGllbnQifQ.WKjk0XVA68zaRYztpZkwtv6SLLPX7iaoH-RIrpOjSLw";
+  //   this.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJIZWFsdGhTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiI2NGNjZWU4Yi04YzU2LTQ0NGMtODE5OC1hNTY3NTMxZjIyZTAiLCJpYXQiOiI5LzEyLzIwMjAgNjowNTozMCBBTSIsIkNsaW5pY2lhbklkIjoiQzAwMDEiLCJDbGluaWNpYW5OYW1lIjoiSm9zZXBoIFdvb2RzIiwiRW1haWwiOiJ5aWZhbi5sb3VAdWNsLmFjLnVrIiwiZXhwIjoxNTk5OTc3MTMwLCJpc3MiOiJIZWFsdGhBdXRoZW50aWNhdGlvblNlcnZlciIsImF1ZCI6IkhlYWx0aFNlcnZpY2VQb3N0bWFuQ2xpZW50In0.Obmn2sXcicZ07aNhX32Nqb0xu0jSTAj8HqJ-695u6jI";
   //   return this.token;
   // }
 }

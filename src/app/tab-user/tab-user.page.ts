@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { ModalController, MenuController, NavController } from "@ionic/angular";
+import { WatchListService } from '../services/watch-list.service';
 
 @Component({
   selector: 'app-tab3',
@@ -8,12 +9,28 @@ import { ModalController, MenuController, NavController } from "@ionic/angular";
   styleUrls: ['tab-user.page.scss']
 })
 export class UserPage {
+  clinicianId;
+  email;
+  clinicianName;
 
-  constructor(public authService: AuthService, private navCtrl: NavController) {}
+  constructor(public authService: AuthService, private navCtrl: NavController, private watchListService: WatchListService) {}
+
+  ngOnInit() {
+  }
+
+  ionViewDidEnter(){
+    this.InitializeData();
+  }
+
+  InitializeData() {
+    this.email = this.watchListService.email;
+    this.clinicianId = this.watchListService.clinicianId;
+    this.clinicianName = this.watchListService.clinicianName;
+  }
 
   logout() {
     this.authService.logout();
-    this.navCtrl.navigateRoot('/landing-page');
+    this.navCtrl.navigateRoot('/login-page');
   }
 
 }

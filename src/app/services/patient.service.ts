@@ -120,6 +120,11 @@ export class PatientService {
     return this.http.get(this.myApiUrl+"/api/Clinician/"+clinicianId, {headers: this.headers});
   }
 
+  // For test
+  // getClinicianName(clinicianId){
+  //   return {clinicianId: "C0001"};
+  // }
+
   // *****************************************************************************************
   // Observation Related
   // *****************************************************************************************

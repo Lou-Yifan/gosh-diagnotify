@@ -39,17 +39,23 @@ export class ObservationPage implements OnInit {
       this.patientService
         .getObservationsById(this.loadedPatientId)
         .subscribe((data) => {
-          // Sort the data to make the newest appointment first
+
+          // Sort the data to make the newest first
           const unsortedData: any = data;
-          this.observations = unsortedData.sort((a, b) => {
-            if (a.date < b.date) return 1;
-            if (a.date > b.date) return -1;
-            if ((a.date = b.date)) {
-              if (a.time < b.time) return 1;
-              if (a.time > b.time) return -1;
-            }
-          });
-          console.log("Observations: ", this.observations);
+          //console.log("unsorted: ", unsortedData);
+
+          // unsortedData.sort((a: any, b: any) => {
+          //   if (a.date < b.date) return 1;
+          //   if (a.date > b.date) return -1;
+          //   if (a.date = b.date) {
+          //     if (a.time < b.time) return 1;
+          //     if (a.time > b.time) return -1;
+          //   }
+          // });
+
+          unsortedData.reverse();
+          this.observations = unsortedData;
+          //console.log("Observations: ", this.observations);
 
           if (this.observations != []) {
             this.obtainChartData();

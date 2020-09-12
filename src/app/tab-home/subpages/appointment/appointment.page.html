@@ -17,10 +17,10 @@
       </ion-label>
     </ion-card-header>
     <ion-card-content>
+      <p [ngStyle]="{'font-size': myFont()}">Clinician: {{ appointment.clinicianName }}</p>
       <p [ngStyle]="{'font-size': myFont()}">Event:  {{ appointment.event }}</p>
       <p [ngStyle]="{'font-size': myFont()}">Department: {{ appointment.department }}</p>
-      <p [ngStyle]="{'font-size': myFont()}">Clinician: {{ appointment.clinicianName }}</p>
-      <p [ngStyle]="{'font-size': myFont()}">Location: {{ appointment.floor }}, {{ appointment.room }}</p>
+      <p [ngStyle]="{'font-size': myFont()}">Location: {{ appointment.room }}, {{ appointment.floor }}</p>
     </ion-card-content>
   </ion-card>
 

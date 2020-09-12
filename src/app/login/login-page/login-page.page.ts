@@ -11,6 +11,8 @@ import { WatchListService } from 'src/app/services/watch-list.service';
   styleUrls: ["./login-page.page.scss"],
 })
 export class LoginPagePage implements OnInit {
+  mainImg="https://diagnotifyimages.blob.core.windows.net/diagnotify-container/DRIVE_main.png";
+
   constructor(
     private modalController: ModalController,
     private authService: AuthService,

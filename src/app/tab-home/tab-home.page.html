@@ -17,7 +17,7 @@
   <ion-list
     *ngFor="let patient of patients; let i = index">
     <ion-item-sliding>
-    <ion-item [routerLink]="['/tabs/home/Patient', patient.id]">
+    <ion-item detail="false" [routerLink]="['/tabs/home/Patient', patient.id]">
       <ion-avatar slot="start">
         <ion-img [src]="obtainAvatar(patient.id)"></ion-img>
       </ion-avatar>
@@ -27,7 +27,7 @@
             [name]="patient.gender+'-outline'"
             [class]="patient.gender + 'Color'"
           ></ion-icon>
-          <ion-icon name="bookmark" style="float: right;" [color]="checkIfFollowed(patient)"></ion-icon>
+          <ion-icon name="bookmark" class="markbook" [color]="checkIfFollowed(patient)"></ion-icon>
         </h2>
         <p>Date of Birth: {{ patient.birthDate }}</p>
       </ion-label>

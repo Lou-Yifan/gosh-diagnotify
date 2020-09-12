@@ -67,10 +67,10 @@ export class ChartsComponent implements OnInit {
     let data_all: any = [];
     let data_all_2: any = [];
 
-    console.log("labels: ", this.labels);
+    //console.log("labels: ", this.labels);
     for (let date of this.labels) {
       date = date.slice(0, 4)+"/"+date.slice(5,7)+"/"+date.slice(8);
-      console.log("date: ", date);
+      //console.log("date: ", date);
       this.labels_all.push(new Date(date));
     }
     for (let value of this.labelData) {
@@ -88,7 +88,7 @@ export class ChartsComponent implements OnInit {
       }
     }
     //console.log(this.label);
-    console.log("labels_all: ", this.labels_all);
+    //console.log("labels_all: ", this.labels_all);
     //console.log("data_all: ", data_all);
     // console.log(this.data_all_2);
 
@@ -162,9 +162,9 @@ export class ChartsComponent implements OnInit {
         },{
           label: this.label,
           fill: false,
-          borderColor: "#3cb371",
+          borderColor: "#A52A2A",
           borderWidth: 2,
-          pointBackgroundColor: "#3cb371",
+          pointBackgroundColor: "#A52A2A",
           pointBorderColor: "rgba(0,0,0,0)",
           pointBorderWidth: 1,
           pointRadius: 0,
@@ -182,7 +182,7 @@ export class ChartsComponent implements OnInit {
           result.push(this.changeAnno(this.markLines[label][i][j], "#4169e1"));
         } else {
           if (this.markLines[label][i][j] != null && i == 1) {
-            result.push(this.changeAnno(this.markLines[label][i][j], "#3cb371"));
+            result.push(this.changeAnno(this.markLines[label][i][j], "#A52A2A"));
           }
         }
       }

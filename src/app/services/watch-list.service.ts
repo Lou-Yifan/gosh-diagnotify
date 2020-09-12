@@ -15,6 +15,7 @@ export class WatchListService {
   // watchList
   watchPatientIds: any;
   watchPatients: any = [];
+
   // For home and watchList page to distinguish if watchList has changed
   status_home: boolean = false;
   status_watchList: boolean = false;
@@ -22,6 +23,7 @@ export class WatchListService {
   // account
   email: any;
   clinicianId: any;
+  clinicianName: any;
 
   constructor(
     public http: HttpClient,

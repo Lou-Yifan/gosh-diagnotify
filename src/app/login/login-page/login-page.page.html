@@ -5,7 +5,7 @@
 </ion-header>
 <ion-content class="ion-padding">
 
-  <ion-img src="/assets/shapes.svg"></ion-img>
+  <ion-img [src]="mainImg"></ion-img>
 
   <form #form="ngForm" (ngSubmit)="login(form)" method="post">
     <ion-item class="ion-padding-horizontal">

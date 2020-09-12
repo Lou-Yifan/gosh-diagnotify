@@ -22,7 +22,7 @@
 </ion-header>
 
 <ion-content color="light">
-  <ion-slides #slides (ionSlideDidChange)="slideChanged()">
+  <ion-slides #slides (ionSlideDidChange)="slideChanged()" [options]="{autoHeight: true}">
     <ion-slide>
       <app-tests [tests]="tests"></app-tests>
     </ion-slide>

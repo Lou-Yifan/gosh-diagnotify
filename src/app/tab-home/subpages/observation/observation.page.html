@@ -26,15 +26,16 @@
     (ionSlideDidChange)="slideChanged()"
     class="ion-no-padding"
     class="ion-no-margin"
+    [options]="{autoHeight: true}"
   >
-    <ion-slide class="slideHeight">
+    <ion-slide>
       <app-observation-list
         [observations]="observations"
         class="fullWidth"
       ></app-observation-list>
     </ion-slide>
 
-    <ion-slide class="slideHeight">
+    <ion-slide>
       <ion-list style="width: 100%;" class="ion-no-padding">
         <ion-item *ngFor="let data of chartData" lines="none" class="ion-no-margin" class="ion-no-padding">
           <app-charts

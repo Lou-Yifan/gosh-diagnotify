@@ -33,11 +33,18 @@ export class HomePage {
   }
 
   InitializeData() {
+    
     //console.log("email: ", this.watchListService.email);
     this.watchListService.getUser().subscribe((data) => {
+    
+    // For test
+      //let data = [{clinicianName:"Alan", clinicianId: "C0001"}];
+      
       //console.log("user: ", data);
       let user: any = data;
       this.watchListService.clinicianId = user[0].clinicianId;
+      this.watchListService.clinicianName = user[0].clinicianName;
+      console.log("clinicianId: ", this.watchListService.clinicianId);
       // Get all the data from API
       let p = this.patientService.getPatients();
       let w = this.watchListService.getWatchPatients();

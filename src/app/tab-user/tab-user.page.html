@@ -1,21 +1,32 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-title>
-      Account
-    </ion-title>
+    <ion-title> Account </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
   <ion-list>
     <ion-item>
-      <ion-icon name="key" slot="start" color="warning"></ion-icon>
-      <ion-label>
-        Change password
-      </ion-label>
+      <ion-label> Name </ion-label>
+      <ion-text> {{ clinicianName }} </ion-text>
     </ion-item>
+    <ion-item>
+      <ion-label> Id </ion-label>
+      <ion-text> {{ clinicianId }} </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label> Email </ion-label>
+      <ion-text> {{ email }} </ion-text>
+    </ion-item>
+
+    <!-- Change password -->
+    <!-- <ion-item>
+      <ion-icon name="key" slot="start" color="warning"></ion-icon>
+      <ion-label> Change password </ion-label>
+    </ion-item> -->
   </ion-list>
 
-  <ion-button expand="full" class="logoutBtn" color="danger" (click)="logout()">Logout</ion-button>
+  <ion-button expand="full" class="logoutBtn" color="danger" (click)="logout()"
+    >Logout</ion-button
+  >
 </ion-content>
