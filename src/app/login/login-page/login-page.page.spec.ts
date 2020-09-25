@@ -1,5 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { ModalController, NavController } from "@ionic/angular";
 
 import { LoginPagePage } from './login-page.page';
 
@@ -10,7 +13,8 @@ describe('LoginPagePage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ LoginPagePage ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), HttpClientTestingModule],
+      providers: [NativeStorage]
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginPagePage);

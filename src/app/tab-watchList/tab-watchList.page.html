@@ -18,7 +18,7 @@
   <ion-list
     *ngFor="let patient of watchPatients;">
     <ion-item-sliding>
-    <ion-item [routerLink]="['/tabs/home/Patient', patient.id]">
+    <ion-item detail="false" [routerLink]="['/tabs/home/Patient', patient.id]">
       <ion-avatar slot="start">
         <ion-img [src]="obtainAvatar(patient.id)"></ion-img>
       </ion-avatar>

@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:227558885373:android:ee0834492c09b335913b94",
         "android_client_info": {
-          "package_name": "com.gosh.Health"
+          "package_name": "io.ionic.starter"
         }
       },
       "oauth_client": [

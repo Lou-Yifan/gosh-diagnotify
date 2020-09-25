@@ -1,22 +1,26 @@
 <ion-card *ngFor="let diagnose of diagnoses">
-  <ion-card-header style="text-align: left;">
+  <ion-card-header style="text-align: left">
     <h3 color="dark">Patient Self-description</h3>
   </ion-card-header>
   <ion-card-content>
-      <h2 color="dark" style="text-align: justify;">{{ diagnose.selfDescription }}</h2>
+    <h2 color="dark" style="text-align: justify">
+      {{ diagnose.selfDescription }}
+    </h2>
   </ion-card-content>
 
-  <ion-card-header style="text-align: left;">
+  <ion-card-header style="text-align: left">
     <h3 color="dark">Clinician Diagnose</h3>
   </ion-card-header>
   <ion-card-content>
-      <h2 color="dark" style="text-align: justify;">{{ diagnose.clinicianDescription }}</h2>
+    <h2 color="dark" style="text-align: justify">
+      {{ diagnose.clinicianDescription }}
+    </h2>
   </ion-card-content>
 
-  <ion-card-header style="text-align: left;">
+  <ion-card-header style="text-align: left">
     <h3 color="dark">Suggestions</h3>
   </ion-card-header>
   <ion-card-content>
-      <h2 color="dark" style="text-align: justify;">{{ diagnose.suggestions }}</h2>
+    <h2 color="dark" style="text-align: justify">{{ diagnose.suggestions }}</h2>
   </ion-card-content>
 </ion-card>

@@ -102,7 +102,7 @@ export class ChartsComponent implements OnInit {
     let weekIndex = this.labels_all.length;
     let monthIndex =this.labels_all.length; 
     let yearIndex = this.labels_all.length;
-    for(let i=this.labels_all.length; i>-1; i--) {
+    for(let i=0; i<this.labels_all.length; i++) {
       if (this.labels_all[i]>weekDate) {
         weekIndex = i;
       }
@@ -113,17 +113,17 @@ export class ChartsComponent implements OnInit {
         yearIndex = i;
       }
     }
-    this.labels_year = this.labels_all.slice(yearIndex);
-    data_year = data_all.slice(yearIndex);
-    this.labels_month = this.labels_all.slice(monthIndex);
-    data_month = data_all.slice(monthIndex);
-    this.labels_week = this.labels_all.slice(weekIndex);
-    data_week = data_all.slice(weekIndex);
+    this.labels_year = this.labels_all.slice(0, yearIndex+1);
+    data_year = data_all.slice(0, yearIndex+1);
+    this.labels_month = this.labels_all.slice(0, monthIndex+1);
+    data_month = data_all.slice(0, monthIndex+1);
+    this.labels_week = this.labels_all.slice(0, weekIndex+1);
+    data_week = data_all.slice(0, weekIndex+1);
 
     if (data_all_2 != []) {
-      data_year_2 = data_all_2.slice(yearIndex);
-      data_month_2 = data_all_2.slice(monthIndex);
-      data_week_2 = data_all_2.slice(weekIndex);
+      data_year_2 = data_all_2.slice(0, yearIndex+1);
+      data_month_2 = data_all_2.slice(0, monthIndex+1);
+      data_week_2 = data_all_2.slice(0, weekIndex+1);
     }
 
     this.dataSet_all = this.getDataSet(data_all, data_all_2);

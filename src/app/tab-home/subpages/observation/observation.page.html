@@ -2,18 +2,19 @@
   <ion-toolbar color="primary">
     <ion-buttons>
       <ion-back-button slot="start"></ion-back-button>
+      <ion-title>Observations</ion-title>
     </ion-buttons>
-    <ion-title>Observations</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
     <ion-segment
       slot="end"
-      style="background: rgb(195, 225, 236)"
       (ionChange)="segmentChanged()"
       [(ngModel)]="segment"
     >
-      <ion-segment-button value="0" style="width: 50px; min-width: 50px;">
+      <ion-segment-button value="0">
         <ion-icon name="calendar" color="primary"></ion-icon>
       </ion-segment-button>
-      <ion-segment-button value="1" style="width: 50px; min-width: 50px;">
+      <ion-segment-button value="1">
         <ion-icon name="bar-chart" color="primary"></ion-icon>
       </ion-segment-button>
     </ion-segment>
@@ -36,13 +37,18 @@
     </ion-slide>
 
     <ion-slide>
-      <ion-list style="width: 100%;" class="ion-no-padding">
-        <ion-item *ngFor="let data of chartData" lines="none" class="ion-no-margin" class="ion-no-padding">
+      <ion-list style="width: 100%" class="ion-no-padding">
+        <ion-item
+          *ngFor="let data of chartData"
+          lines="none"
+          class="ion-no-margin"
+          class="ion-no-padding"
+        >
           <app-charts
-          [labels]="label"
-          [labelData]="data"
-          class="fullWidth"
-        ></app-charts>
+            [labels]="label"
+            [labelData]="data"
+            class="fullWidth"
+          ></app-charts>
         </ion-item>
       </ion-list>
     </ion-slide>

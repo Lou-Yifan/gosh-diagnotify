@@ -2,21 +2,21 @@
   <ion-toolbar color="primary">
     <ion-buttons>
       <ion-back-button slot="start"></ion-back-button>
+      <ion-title>Report({{ report[0].datetime.slice(0, 10) }})</ion-title>
     </ion-buttons>
-    <ion-title>Report({{ report[0].datetime.slice(0, 10) }})</ion-title>
   </ion-toolbar>
   <ion-segment (ionChange)="segmentChanged()" [(ngModel)]="segment" color="success">
     <ion-segment-button value="0">
       <ion-label color="dark">Tests</ion-label>
     </ion-segment-button>
     <ion-segment-button value="1">
-      <ion-label>Images</ion-label>
+      <ion-label color="dark">Images</ion-label>
     </ion-segment-button>
     <ion-segment-button value="2">
-      <ion-label>Diagnose</ion-label>
+      <ion-label color="dark">Diagnose</ion-label>
     </ion-segment-button>
     <ion-segment-button value="3">
-      <ion-label>Medication</ion-label>
+      <ion-label color="dark">Medication</ion-label>
     </ion-segment-button>
   </ion-segment>
 </ion-header>

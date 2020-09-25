@@ -2,8 +2,8 @@
   <ion-toolbar color="primary">
     <ion-buttons>
       <ion-back-button slot="start"></ion-back-button>
+      <ion-title>Card color</ion-title>
     </ion-buttons>
-    <ion-title>Card color</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -34,6 +34,7 @@
               ion-button
               style="background-color: #ffffff"
               class="colorBtn"
+              [(ngStyle)]="borderColor[0]"
               (click)="changeColor('#ffffff')"
             ></button>
           </ion-col>
@@ -42,6 +43,7 @@
               ion-button
               style="background-color: #f0fcff"
               class="colorBtn"
+              [(ngStyle)]="borderColor[1]"
               (click)="changeColor('#f0fcff')"
             ></button>
           </ion-col>
@@ -50,6 +52,7 @@
               ion-button
               style="background-color: #fcefe8"
               class="colorBtn"
+              [(ngStyle)]="borderColor[2]"
               (click)="changeColor('#fcefe8')"
             ></button>
           </ion-col>
@@ -61,6 +64,7 @@
               ion-button
               style="background-color: #e0f0e9"
               class="colorBtn"
+              [(ngStyle)]="borderColor[3]"
               (click)="changeColor('#e0f0e9')"
             ></button>
           </ion-col>
@@ -69,6 +73,7 @@
               ion-button
               style="background-color: #f0e8e0"
               class="colorBtn"
+              [(ngStyle)]="borderColor[4]"
               (click)="changeColor('#f0e8e0')"
             ></button>
           </ion-col>
@@ -77,6 +82,7 @@
               ion-button
               style="background-color: #eee0f0"
               class="colorBtn"
+              [(ngStyle)]="borderColor[5]"
               (click)="changeColor('#eee0f0')"
             ></button>
           </ion-col>

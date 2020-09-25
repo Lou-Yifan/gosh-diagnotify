@@ -37,7 +37,7 @@ export class HomePage {
     //console.log("email: ", this.watchListService.email);
     this.watchListService.getUser().subscribe((data) => {
     
-    // For test
+      // For test
       //let data = [{clinicianName:"Alan", clinicianId: "C0001"}];
       
       //console.log("user: ", data);

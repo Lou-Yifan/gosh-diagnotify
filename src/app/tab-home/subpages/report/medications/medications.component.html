@@ -1,11 +1,11 @@
 <ion-card *ngFor="let medication of medications"  style="text-align: left;" color="cardcolor">
   <img [src]="medication.medicineUrl" style="width: 100%; max-height: 250px;">
-  <ion-header class="ion-margin">
+  <ion-card-header>
     <ion-card-subtitle>{{ datetime }}</ion-card-subtitle>
-    <ion-card-title>{{ medication.medicineName }}</ion-card-title>
-  </ion-header>
+    <ion-card-title lines="none">{{ medication.medicineName }}</ion-card-title>
+  </ion-card-header>
   <ion-card-content style="padding-top: 0;">
-    <ion-grid>
+    <ion-grid class="ion-no-padding">
       <ion-row>
         <ion-col size='8'>
           <h2>Times per day:</h2>
